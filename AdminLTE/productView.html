@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="tvOutletIcon.png">
+    <title>tvOutlet | Products</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- tables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <style>
+        .active-orange {
+            background-color: #ff7f00;
+        }
+
+        li>a:hover {
+            color: #FF7F00 !important;
+        }
+
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+        .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+            background-color: #ff7f00 !important;
+            color: #fff;
+        }
+
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+        .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active:hover {
+            color: black !important;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <!-- <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search"
+                        aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form> -->
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">15</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-light-primary elevation-2">
+            <!-- Brand Logo -->
+            <a href="adminIndex.html" class="brand-link">
+                <img src="tvOutletIcon.png" alt="AdminLTE Logo" class="brand-image">
+                <span class="brand-text font-weight-light">tvOutlet Admin</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="tvOutletIcon.png" class="img-circle elevation-1" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block font-weight-bold">Administrator</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                        data-accordion="false">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cart-arrow-down"></i>
+                                <p>
+                                    Orders
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cash-register"></i>
+                                <p>
+                                    Sales
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-tv"></i>
+                                <p>
+                                    Products
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="productView.html" class="nav-link active">
+                                        <i class="fas fa-table nav-icon"></i>
+                                        <p>View Products</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="productAdd.html" class="nav-link">
+                                        <i class="far fa-plus-square nav-icon"></i>
+                                        <p>Add Product</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-box-open"></i>
+                                <p>
+                                    Stock Control
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-pallet nav-icon"></i>
+                                        <p>Update stock</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-table nav-icon"></i>
+                                        <p>View Stocks</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Customers
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">Maintenance</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-sliders-h"></i>
+                                <p>
+                                    Home Banner/Slider
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-store"></i>
+                                <p>
+                                    Manufacturers
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-table nav-icon"></i>
+                                        <p>View Manufacturers</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                        <i class="far fa-plus-square nav-icon"></i>
+                                        <p>Add Manufacturer/Brand</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-desktop"></i>
+                                <p>
+                                    Screen Technology
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-memory"></i>
+                                <p>
+                                    Additional Features
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">Account Setting</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-cogs"></i>
+                                <p>
+                                    Account
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Products</h1>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+
+                    <section class="content">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3 class="card-title">DataTable with default features</h3>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 15px;">#</th>
+                                                    <th style="width: 90px;" >Image</th>
+                                                    <th style="width: 210px;">Product</th>
+                                                    <th style="width: 80px;" >Stock</th>
+                                                    <th style="width: 50px;" >Price</th>
+                                                    <th style="width: 90px;" >Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- tv1 -->
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center"><center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg" alt="Attachment Image"></center><span><a href="#" style="color: #ff7f00">View images</a></span></td>
+                                                    <td>LG CX 77 inch 4K Smart OLED TV <p class="text-muted">Model: OLED77CXPPA<br>Brand: LG</p></td>
+                                                    <td><span class="text-success font-weight-bold">In-Stock</span> (23)<br> <span><a href="#" style="color: #ff7f00">Update stock</a></span></td>
+                                                    <td>$1,250,990</td>
+                                                    <td>
+                                                        <a href="productSingleView.html" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View product">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="productEdit.html" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit product">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Remove product">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <!-- tv2 -->
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center"><center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="https://www.lg.com/ph/images/tvs/md06128317/gallery/D01.jpg" alt="Attachment Image"></center><span><a href="#" style="color: #ff7f00">View images</a></span></td>
+                                                    <td>65'' OLED TV, OLED 4K Panel, Picture-on-Glass, Self-lighting Pixel, a9 Gen2 Intelligent Processor <p class="text-muted">Model: OLED65E9PPA<br>Brand: LG</p></td>
+                                                    <td><span class="text-danger font-weight-bold">Out-of-stock</span> (0)<br> <span><a href="#" style="color: #ff7f00">Update stock</a></span></td>
+                                                    <td>$25,990</td>
+                                                    <td>
+                                                        <a href="productSingleView.html" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View product">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="productEdit.html" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit product">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Remove product">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <!-- tv3 -->
+                                                <tr>
+                                                    <td class="text-center">1</td>
+                                                    <td class="text-center"><center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="https://images.samsung.com/is/image/samsung/p6pim/ph/ua70tu7000gxxp/gallery/ph-uhd-tu7000-324462-ua70tu7000gxxp-356426257?$684_547_PNG$" alt="Attachment Image"></center><span><a href="#" style="color: #ff7f00">View images</a></span></td>
+                                                    <td>70" CRYSTAL UHD TU7000 (2020) <p class="text-muted">Model: UA70TU7000GXXP<br>Brand: Samsung</p></td>
+                                                    <td><span class="text-success font-weight-bold">In-Stock</span> (9)<br> <span><a href="#" style="color: #ff7f00">Update stock</a></span></td>
+                                                    <td>$25,990</td>
+                                                    <td>
+                                                        <a href="#" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="View product">
+                                                            <i class="fas fa-eye"></i>
+                                                        </a>
+                                                        <a href="productEdit.html" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="Edit product">
+                                                            <i class="fas fa-edit"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Remove product">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <th style="width: 15px;">#</th>
+                                                    <th>Image</th>
+                                                    <th>Product</th>
+                                                    <th>Stock</th>
+                                                    <th>Unit Price</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                                <!-- /.card -->
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2020 <a href="#" style="color: #FF7F00;">tvOutlet.com</a>.</strong> All rights
+            reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- REQUIRED SCRIPTS -->
+
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- jQuery -->
+    <!-- DataTables -->
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- page script -->
+    <script>
+        $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+</body>
+
+</html>
