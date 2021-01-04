@@ -22,7 +22,7 @@
         li>a:hover {
             color: #FF7F00 !important;
         }
-        
+
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
         .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
             background-color: #ff7f00 !important;
@@ -32,6 +32,14 @@
         .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
         .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active:hover {
             color: black !important;
+        }
+
+        @media (min-width: 34em) {
+            .card-columns {
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
         }
     </style>
 </head>
@@ -275,11 +283,11 @@
             <!-- Main content -->
             <section class="content">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="card-columns container">
+                        <!-- stock column -->
                         <div class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title font-weight-bolder">Stock</h3>
-
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         data-toggle="tooltip" title="Collapse">
@@ -336,12 +344,36 @@
                             <!-- /.card-body -->
                         </div>
                         <!-- /.card -->
-                    </div>
-                    <div class="col-md-6">
+                        <!-- others column -->
+                        <div class="card card-secondary">
+                            <div class="card-header">
+                                <h3 class="card-title font-weight-bolder">Others</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                        data-toggle="tooltip" title="Collapse">
+                                        <i class="fas fa-minus"></i></button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="inputDescription">Product Overview</label>
+                                    <textarea id="inputDescription" class="form-control" rows="4"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputDescription">What's in the box</label>
+                                    <textarea id="inputDescription" class="form-control" rows="2"></textarea>
+                                </div>
+                                <a href="#" class="btn btn-secondary" type="clear">Cancel</a>
+                                <input type="submit" value="Add Product" style="background-color: #ff7f00;"
+                                    class="btn text-white float-right">
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                        <!-- specs column -->
                         <div class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title font-weight-bolder">Specifications</h3>
-
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         data-toggle="tooltip" title="Collapse">
@@ -410,33 +442,6 @@
                                     <label for="inputDescription">Other Specifications</label>
                                     <textarea id="inputDescription" class="form-control" rows="5"></textarea>
                                 </div>
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card card-secondary">
-                            <div class="card-header">
-                                <h3 class="card-title font-weight-bolder">Others</h3>
-
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        data-toggle="tooltip" title="Collapse">
-                                        <i class="fas fa-minus"></i></button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="inputDescription">Product Overview</label>
-                                    <textarea id="inputDescription" class="form-control" rows="4"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputDescription">What's in the box</label>
-                                    <textarea id="inputDescription" class="form-control" rows="2"></textarea>
-                                </div>
-                                <a href="#" class="btn btn-secondary" type="clear">Cancel</a>
-                                <input type="submit" value="Add Product" style="background-color: #ff7f00;" class="btn text-white float-right">
                             </div>
                             <!-- /.card-body -->
                         </div>
