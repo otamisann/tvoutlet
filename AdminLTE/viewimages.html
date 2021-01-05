@@ -2,7 +2,41 @@
 <html lang="en">
 <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="tvOutletIcon.png">
+    <title>tvOutlet | Images</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <!-- tables -->
+    <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+    <style>
+        .active-orange {
+            background-color: #ff7f00;
+        }
 
+        li>a:hover {
+            color: #FF7F00 !important;
+        }
+
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+        .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+            background-color: #ff7f00 !important;
+            color: #fff;
+        }
+
+        .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+        .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active:hover {
+            color: black !important;
+        }
+    </style>
+</head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
@@ -110,8 +144,8 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link ">
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tv"></i>
                                 <p>
                                     Products
@@ -120,7 +154,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="productView.html" class="nav-link">
+                                    <a href="productView.html" class="nav-link active">
                                         <i class="fas fa-table nav-icon"></i>
                                         <p>View Products</p>
                                     </a>
@@ -174,7 +208,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="manufacturer.html" class="nav-link active">
+                            <a href="manufacturer.html" class="nav-link">
                                 <i class="nav-icon fas fa-store"></i>
                                 <p>
                                     Manufacturers
@@ -229,18 +263,12 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="adminLogin.html" class="text-white btn btn-danger btn-block mb-2">
-                                Sign out
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
             <!-- /.sidebar -->
         </aside>
-
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -249,7 +277,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Manufacturers</h1>
+                            <h1 class="m-0 text-dark">Products Images</h1>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
                 </div><!-- /.container-fluid -->
@@ -257,112 +285,53 @@
             <!-- /.content-header -->
 
             <!-- Main content -->
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="card card-default color-pallete-box collapsed-card">
-                        <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Add Manufacturer/Brand</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="inputName">Brand Name</label>
-                                        <input type="text" name="" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="inputName">Brand Email Address</label>
-                                        <input type="email" name="" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group">
-                                        <label for="inputName">Brand Website Link</label>
-                                        <input type="url" name="" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-6 d-flex align-self-end justify-content-lg-end">
-                                    <a href="#" class="btn btn-secondary mr-2">Cancel</a>
-                                    <a href="#" style="color: white !important;"
-                                        class="btn bg-orange font-weight-bold">Add Brand</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <section class="content">
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title font-weight-bold">Manufacturer List</h3>
+                <!-- Default box -->
+                <div class="card card-solid">
+                    <div class="card-body pb-0">
+                        <div class="row">
+                            <!-- img card -->
+                            <div class="col-md-3">
+                                <div class="card bg-light">
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-12 text-center mt-3">
+                                                <img src="https://www.lg.com/ph/images/tvs/md06128317/gallery/D01.jpg" alt=""
+                                                    class="img-rounded img-fluid" style="object-fit: cover ;height: 100%;width: 90%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="text-center">
+                                            <a href="#" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i> Remove
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- img card ends -->
+                            <!-- img add -->
+                            <div class="col-md-3 d-flex align-middle">
+                                <div class="card bg-light w-100">
+                                    <div class="card-body pt-0">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <a href="#upload"><i class="fas fa-plus text-black-50 fa-3x d-flex justify-content-center" style="margin-top: 40%;"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- img add ends -->
                         </div>
-                        <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Brand Name</th>
-                                        <th>Email Address</th>
-                                        <th>Website Link</th>
-                                        <th style="width: 220px" class="text-center">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Samsung</td>
-                                        <td>samsungph@gmail.com</td>
-                                        <td><a href="samsung.com.ph">samsung.com.ph</a></td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning text-white btn-sm" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
-                                                <i class="fas fa-trash"></i> Remove
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>LG</td>
-                                        <td>LGPH@gmail.com</td>
-                                        <td><a href="samsung.com.ph">lgph.com.ph</a></td>
-                                        <td class="justify-content-between align-middle">
-                                            <a href="#" class="btn btn-warning text-white btn-sm" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
-                                                <i class="fas fa-trash"></i> Remove
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>TCL</td>
-                                        <td>tclph@gmail.com</td>
-                                        <td><a href="samsung.com.ph">tcl.com.ph</a></td>
-                                        <td class="justify-content-between align-middle">
-                                            <a href="#" class="btn btn-warning text-white btn-sm" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </a>
-                                            <a href="#" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
-                                                <i class="fas fa-trash"></i> Remove
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-                </div><!-- /.container-fluid -->
-            </div>
+                    
+                </div>
+                <!-- /.card -->
+
+            </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
@@ -384,11 +353,30 @@
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
+    <!-- jQuery -->
+    <!-- DataTables -->
+    <script src="plugins/datatables/jquery.dataTables.js"></script>
+    <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <!-- AdminLTE App -->
+    <script src="dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="dist/js/demo.js"></script>
+    <!-- page script -->
     <script>
         $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        $(function () {
+            $("#example1").DataTable();
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
     </script>
 </body>
 
