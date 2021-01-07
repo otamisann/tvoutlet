@@ -204,7 +204,7 @@ $page = 'additionalfeature';
                                     <?php endwhile;
                                     // remove
                                     if (isset($_POST['remove'])) {
-                                        $FeatureID = $_POST['$FeatureID'];
+                                        $FeatureID = $_POST['FeatureID'];
                                         $query_remove = "UPDATE feature SET IsDelete = 1 WHERE FeatureID = '$FeatureID';";
                                         $result_remove = mysqli_query($conn, $query_remove) or die(mysqli_error($conn));
                                         if ($result_remove) {

@@ -56,8 +56,8 @@ $row = mysqli_fetch_assoc($result);
                         </p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="" class="nav-link ">
+                <li class="nav-item has-treeview <?php echo ( $page == "productadd" || $page =="productview" ? "menu-open" : "") ?>">
+                    <a href="#" class="nav-link <?php echo ($page == "productadd" || $page =="productview" ? "active" : "") ?>">
                         <i class="nav-icon fas fa-tv"></i>
                         <p>
                             Products
@@ -66,13 +66,13 @@ $row = mysqli_fetch_assoc($result);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="productView.html" class="nav-link">
+                            <a href="productView.php" class="nav-link <?php echo ($page == "productview" ? "active" : "") ?>">
                                 <i class="fas fa-table nav-icon"></i>
                                 <p>View Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="productAdd.html" class="nav-link">
+                            <a href="productAdd.php" class="nav-link <?php echo ($page == "productadd" ? "active" : "") ?>">
                                 <i class="far fa-plus-square nav-icon"></i>
                                 <p>Add Product</p>
                             </a>
@@ -127,29 +127,6 @@ $row = mysqli_fetch_assoc($result);
                         </p>
                     </a>
                 </li>
-                <!-- <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-store"></i>
-                                <p>
-                                    Manufacturers
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-table nav-icon"></i>
-                                        <p>View Manufacturers</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-plus-square nav-icon"></i>
-                                        <p>Add Manufacturer/Brand</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li> -->
                 <li class="nav-item">
                     <a href="screentech.php" class="nav-link <?php echo ($page == "screentech" ? "active" : "") ?>">
                         <i class="nav-icon fas fa-desktop"></i>
