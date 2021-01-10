@@ -60,12 +60,13 @@ $page = 'productadd';
                         $TVReleaseDate = $_POST['TVReleaseDate'];
                         $TVFeature = $_POST['TVFeature'];
                         $TVOtherDesc = $_POST['TVOtherDesc'];
+                        $TVOverview = $_POST['TVOverview'];
                         $TVWarrantyPeriod = $_POST['TVWarrantyPeriod'];
                         $TVWhatsInTheBox = $_POST['TVWhatsInTheBox'];
                         $TVKeywords = $_POST['TVKeywords'];
                         $StockQuantity = $_POST['StockQuantity'];
 
-                        $sql_tv = "INSERT INTO tvspecstbl (TVName,TVModel,TVBrandID,TVPrice,TVScreensize,TVScreenTech,TVResolution,TVDimension,TVReleaseDate,TVFeature,TVOtherDesc,TVWarrantyPeriod,TVWhatsInTheBox,TVKeywords) VALUES ('$TVName','$TVModel','$TVBrandID','$TVPrice','$TVScreensize','$TVScreenTech','$TVResolution','$TVDimension','$TVReleaseDate','$TVFeature','$TVOtherDesc','$TVWarrantyPeriod','$TVWhatsInTheBox','$TVKeywords');";
+                        $sql_tv = "INSERT INTO tvspecstbl (TVName,TVModel,TVBrandID,TVPrice,TVScreensize,TVScreenTech,TVResolution,TVDimension,TVReleaseDate,TVFeature,TVOtherDesc,TVOverview,TVWarrantyPeriod,TVWhatsInTheBox,TVKeywords) VALUES ('$TVName','$TVModel','$TVBrandID','$TVPrice','$TVScreensize','$TVScreenTech','$TVResolution','$TVDimension','$TVReleaseDate','$TVFeature','$TVOtherDesc','$TVOverview','$TVWarrantyPeriod','$TVWhatsInTheBox','$TVKeywords');";
                         if (mysqli_query($conn, $sql_tv)) {
                             // tv_id
                             $last_id = mysqli_insert_id($conn);
@@ -272,7 +273,7 @@ $page = 'productadd';
                                 <!-- other specs -->
                                 <div class="form-group">
                                     <label for="inputDescription">Other Specifications</label>
-                                    <textarea id="inputDescription" class="form-control" rows="7" name="TVOtherDesc" placeholder="Other specifications of television." required></textarea>
+                                    <pre><textarea id="inputDescription" class="form-control text-capitalize" rows="7" name="TVOtherDesc" placeholder="Other specifications of television." required></textarea></pre>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -288,24 +289,25 @@ $page = 'productadd';
                                 </div>
                             </div>
                             <div class="card-body">
+                                <!-- overview -->
                                 <div class="form-group">
                                     <label for="inputDescription">Product Overview</label>
-                                    <textarea id="inputDescription" class="form-control" rows="4" placeholder="Text for product promotion"></textarea>
+                                    <textarea id="inputDescription" class="form-control" rows="4" placeholder="Text for product promotion" name="TVOverview" required></textarea>
                                 </div>
                                 <!-- warranty -->
                                 <div class="form-group">
                                     <label for="warranty">Warranty Period</label>
-                                    <input type="text" name="TVWarrantyPeriod" id="warranty" class="form-control" placeholder="e.g 2 years" required>
+                                    <input type="text" name="TVWarrantyPeriod" id="warranty" class="form-control text-capitalize" placeholder="e.g 2 years" required>
                                 </div>
                                 <!-- in the box -->
                                 <div class="form-group">
                                     <label for="inputDescription">What's in the box</label>
-                                    <textarea id="inputDescription" class="form-control" rows="2" name="TVWhatsInTheBox" placeholder="1 x TV Unit &#101 x Power cord &#101 x Wall bracket" required></textarea>
+                                    <textarea id="inputDescription" class="form-control text-capitalize" rows="2" name="TVWhatsInTheBox" placeholder="1 x TV Unit &#101 x Power cord &#101 x Wall bracket" required></textarea>
                                 </div>
                                 <!-- keywords -->
                                 <div class="form-group">
                                     <label for="inputDescription">Keywords (for Search engine optimization SEO)</label>
-                                    <textarea id="inputDescription" class="form-control" rows="2" name="TVKeywords" placeholder="Keywords will help the products relevance in search engines.s" required></textarea>
+                                    <textarea id="inputDescription" class="form-control text-capitalize" rows="2" name="TVKeywords" placeholder="Keywords will help the products relevance in search engines." required></textarea>
                                 </div>
                                 <input type="reset" class="btn btn-secondary" value="Cancel">
                                 <a href="#add" data-toggle="modal" class="btn text-white float-right" style="background-color: #FF7F00;">Add Product</a>

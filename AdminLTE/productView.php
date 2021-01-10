@@ -75,15 +75,22 @@ $page = 'productview';
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="example1" class="table table-bordered table-striped">
+                                        <table id="example1" class="table table-bordered table-striped" style="width: 100%;">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 15px !important;">#</th>
+                                                    <!-- <th style="width: 15px !important;">#</th>
                                                     <th style="width: 90px;">Image</th>
-                                                    <th style="width: 210px;">Product</th>
+                                                    <th style="width: 150px !important;">Product</th>
                                                     <th style="width: 80px;">Stock</th>
                                                     <th style="width: 50px;">Price</th>
-                                                    <th style="width: 90px">Actions</th>
+                                                    <th style="width: 90px">Actions</th> -->
+
+                                                    <th style="width: 3%;">#</th>
+                                                    <th>Image</th>
+                                                    <th style="width: 30%;">Product</th>
+                                                    <th style="width: 15%;">Stock</th>
+                                                    <th>Price</th>
+                                                    <th>Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -116,7 +123,7 @@ $page = 'productview';
                                                         </td>
                                                         <td>₱ <?php echo number_format($Price, 2); ?></td>
                                                         <td class="justify-content-between align-middle">
-                                                            <a href="productSingleView.html?TVID=<?php echo $ID; ?>" class="btn btn-primary " data-toggle="tooltip" data-placement="top" title="View product">
+                                                            <a href="productSingleView.php?TVID=<?php echo $ID; ?>" class="btn btn-primary " data-toggle="tooltip" data-placement="top" title="View product">
                                                                 <i class="fas fa-eye"></i>
                                                             </a>
                                                             <a href="productEdit.html" class="btn btn-warning text-white" data-toggle="tooltip" data-placement="top" title="Edit product">
@@ -184,7 +191,9 @@ $page = 'productview';
 
     <script>
         $(function() {
-            $("#example1").dataTable();
+            $("#example1").dataTable({
+                "autoWidth": false
+            });
         });
         $(function() {
             $('[data-toggle="tooltip"]').tooltip()
