@@ -112,13 +112,13 @@ $page = 'screentech';
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="inputName">Screen Tech (Abbreviation only)</label>
-                                            <input type="text" name="ScreenTechName" class="form-control" placeholder="e.g LED, LCD, OLED">
+                                            <input type="text" name="ScreenTechName" class="form-control" placeholder="e.g LED, LCD, OLED" required>
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="form-group">
                                             <label for="inputName">Technology Description</label>
-                                            <input type="text" name="ScreenTechDesc" class="form-control" placeholder="e.g Active Matrix Organic Light Emitting Diodes">
+                                            <input type="text" name="ScreenTechDesc" class="form-control" placeholder="e.g Active Matrix Organic Light Emitting Diodes" required>
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex align-self-end justify-content-lg-end">

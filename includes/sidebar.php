@@ -79,8 +79,8 @@ $row = mysqli_fetch_assoc($result);
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview <?php echo ( $page == "updatestock" || $page =="stockview" ? "menu-open" : "") ?>">
+                    <a href="#" class="nav-link <?php echo ( $page == "updatestock" || $page =="stockview" ? "active" : "") ?>">
                         <i class="nav-icon fas fa-box-open"></i>
                         <p>
                             Stock Control
@@ -89,13 +89,13 @@ $row = mysqli_fetch_assoc($result);
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="updatestock.php"  class="nav-link <?php echo ($page == "updatestock" ? "active" : "") ?>">
                                 <i class="fas fa-pallet nav-icon"></i>
-                                <p>Update stock</p>
+                                <p>Adjust Stock-level</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="stockview.php" class="nav-link <?php echo ($page == "stockview" ? "active" : "") ?>">
                                 <i class="fas fa-table nav-icon"></i>
                                 <p>View Stocks</p>
                             </a>
@@ -107,6 +107,14 @@ $row = mysqli_fetch_assoc($result);
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Customers
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-rss"></i>
+                        <p>
+                            Blog
                         </p>
                     </a>
                 </li>
@@ -140,6 +148,14 @@ $row = mysqli_fetch_assoc($result);
                         <i class="nav-icon fas fa-memory"></i>
                         <p>
                             Additional Features
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-address-book"></i>
+                        <p>
+                            Contact Information
                         </p>
                     </a>
                 </li>

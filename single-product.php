@@ -1,6 +1,7 @@
 <?php
 require('includes/connection.php');
 $_SESSION['recent_product'] = $_GET['TVID'];
+$_SESSION['most_recent'] = $_SESSION['recent_product'];
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -47,7 +48,6 @@ $_SESSION['recent_product'] = $_GET['TVID'];
             $new_view = $row_product['Views'] + 1;
             $sql_update_view = "UPDATE tvspecstbl SET Views = $new_view WHERE TVID = '$_GET[TVID]';";
             $result_update_view = mysqli_query($conn, $sql_update_view);
-
             ?>
 
             <!-- SHOP SECTION START -->

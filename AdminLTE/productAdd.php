@@ -66,7 +66,7 @@ $page = 'productadd';
                         $TVKeywords = $_POST['TVKeywords'];
                         $StockQuantity = $_POST['StockQuantity'];
 
-                        $sql_tv = "INSERT INTO tvspecstbl (TVName,TVModel,TVBrandID,TVPrice,TVScreensize,TVScreenTech,TVResolution,TVDimension,TVReleaseDate,TVFeature,TVOtherDesc,TVOverview,TVWarrantyPeriod,TVWhatsInTheBox,TVKeywords) VALUES ('$TVName','$TVModel','$TVBrandID','$TVPrice','$TVScreensize','$TVScreenTech','$TVResolution','$TVDimension','$TVReleaseDate','$TVFeature','$TVOtherDesc','$TVOverview','$TVWarrantyPeriod','$TVWhatsInTheBox','$TVKeywords');";
+                        $sql_tv = "INSERT INTO tvspecstbl (TVQuantity,TVName,TVModel,TVBrandID,TVPrice,TVScreensize,TVScreenTech,TVResolution,TVDimension,TVReleaseDate,TVFeature,TVOtherDesc,TVOverview,TVWarrantyPeriod,TVWhatsInTheBox,TVKeywords) VALUES ('$StockQuantity','$TVName','$TVModel','$TVBrandID','$TVPrice','$TVScreensize','$TVScreenTech','$TVResolution','$TVDimension','$TVReleaseDate','$TVFeature','$TVOtherDesc','$TVOverview','$TVWarrantyPeriod','$TVWhatsInTheBox','$TVKeywords');";
                         if (mysqli_query($conn, $sql_tv)) {
                             // tv_id
                             $last_id = mysqli_insert_id($conn);
