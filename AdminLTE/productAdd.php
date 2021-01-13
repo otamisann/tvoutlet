@@ -71,7 +71,7 @@ $page = 'productadd';
                             // tv_id
                             $last_id = mysqli_insert_id($conn);
                             $totalprice = $StockQuantity * $TVPrice;
-                            $sql_stock = "INSERT INTO stockcontroltbl (TVID, StockQuantity,StockTotalPrice) VALUES ('$last_id','$StockQuantity','$totalprice');";
+                            $sql_stock = "INSERT INTO stockcontroltbl (TVID, StockQuantity) VALUES ('$last_id','$StockQuantity');";
                             mysqli_query($conn, $sql_stock);
                             // image
                             $sql_image = "INSERT INTO tvimagetbl (TVID, TVImage) VALUES ('$last_id','$TVImage');";

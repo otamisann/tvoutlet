@@ -103,9 +103,11 @@ $page = 'stockview';
                                                     $Brand = $row['BrandName'];
                                                     $Model = $row['TVModel'];
                                                     $Price = $row['TVPrice'];
-                                                    $totalPrice = $row['StockTotalPrice'];
+                                                    // $totalPrice = $row['StockTotalPrice'];
+
                                                     $dateDelivered = $row['StockDate'];
                                                     // $Overall = $row['Overall'];
+                                                    $totalPrice = $Price * $Quantity;
                                                     $overall = $overall + $totalPrice;
                                                     $overall_quantity = $overall_quantity + $Quantity;
 

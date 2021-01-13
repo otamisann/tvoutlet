@@ -81,13 +81,16 @@ require('includes/connection.php');
                                                 $price = $row_products['TVPrice'];
                                                 $overview = $row_products['TVOverview'];
                                                 // $image = $row_products['TVImage'];
+                                                $sql_image = "SELECT * from tvimagetbl WHERE TVID = $tvid LIMIT 1;";
+                                                $result_image = mysqli_query($conn, $sql_image);
+                                                $row_image = mysqli_fetch_assoc($result_image);
                                             ?>
                                                 <!-- product-item start -->
                                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                                     <div class="product-item">
                                                         <div class="product-img">
                                                             <a href="single-product.php?TVID=<?php echo $tvid; ?>">
-                                                                <img src="img/product/12.jpg" alt="" />
+                                                                <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" />
                                                             </a>
                                                         </div>
                                                         <div class="product-info">
@@ -102,12 +105,7 @@ require('includes/connection.php');
                                                                 <a href="#"><i class="zmdi zmdi-star-half"></i></a>
                                                                 <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
                                                             </div>
-                                                            <h3 class="pro-price">₱<?php echo number_format($price); ?></h3>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                                </li>
-                                                            </ul>
+                                                            <h3 class="pro-price">₱<?php echo number_format($price,2); ?></h3>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -136,13 +134,16 @@ require('includes/connection.php');
                                                 $price = $row_products['TVPrice'];
                                                 $overview = $row_products['TVOverview'];
                                                 // $image = $row_products['TVImage'];
+                                                $sql_image = "SELECT * from tvimagetbl WHERE TVID = $tvid LIMIT 1;";
+                                                $result_image = mysqli_query($conn, $sql_image);
+                                                $row_image = mysqli_fetch_assoc($result_image);
                                             ?>
                                             <!-- product-item start -->
                                             <div class="col-md-12">
                                                 <div class="shop-list product-item">
                                                     <div class="product-img">
                                                         <a href="single-product.php?TVID=<?php echo $tvid; ?>">
-                                                            <img src="img/product/2.jpg" alt="" />
+                                                            <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" />
                                                         </a>
                                                     </div>
                                                     <div class="product-info">

@@ -127,7 +127,7 @@
                     </div>
                     <!-- php -->
                     <?php
-                        $sql_new = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID JOIN tvimagetbl ON tvspecstbl.TVID = tvimagetbl.TVID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0;";
+                        $sql_new = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0;";
                         $result_new = mysqli_query($conn, $sql_new);
                     ?>
                     <div class="featured-product">
@@ -137,7 +137,10 @@
                                 $TVName = $row_new['TVName'];
                                 $BrandName = $row_new['BrandName'];
                                 $TVPrice = $row_new['TVPrice'];
-                                $TVImage = $row_new['TVImage'];
+                                // $TVImage = $row_new['TVImage'];
+                                $sql_image = "SELECT * FROM tvimagetbl WHERE TVID = $TVID limit 1;";
+                                                    $result_image = mysqli_query($conn, $sql_image);
+                                                    $row_image = mysqli_fetch_assoc($result_image);
                                 
                     ?>
                             <!-- product-item start -->
@@ -145,7 +148,7 @@
                                 <div class="product-item product-item-2">
                                     <div class="product-img">
                                         <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                            <img src="AdminLTE/images/<?php echo $TVImage; ?>" alt="" style="object-fit: cover;width: 270px;height: 270px;" />
+                                            <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="object-fit: cover;width: 100%;height: 100%;" />
                                         </a>
                                     </div>
                                     <div class="product-info">
@@ -203,10 +206,10 @@
                                     <span>Premium</span>
                                 </div>
                                 <div class="banner-img">
-                                    <a href="#"><img src="https://www.lg.com/us/images/tvs/md06065137/features/TV-SIGNATURE-OLED-Z9-01-Intro-Desktop.jpg" alt="" style="object-fit: fill;width: 370px;height: 340px;"></a>
+                                    <a href="#"><img src="https://www.lg.com/us/images/tvs/md06065137/features/TV-SIGNATURE-OLED-Z9-01-Intro-Desktop.jpg" alt="" style="object-fit: fill;width: 100%;height: 340px;"></a>
                                 </div>
                                 <div class="banner-info">
-                                    <h2 class="font-weight-bold shadow-lg"><a href="products.php?price=" class=" text-white">Premium Televisions</a></h2>
+                                    <h2 class="font-weight-bold shadow-lg"><a href="shop_results.php?low=50000&high=1000000" class=" text-white">Premium Televisions</a></h2>
                                     <ul class="banner-featured-list">
                                         <li>
                                             <i class="zmdi zmdi-check text-white"></i><span class="text-white">LG Signature</span>
@@ -255,21 +258,24 @@
                                 <div class="row">
                                     <!-- php -->
                                     <?php
-                                        $sql_popular = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID JOIN tvimagetbl ON tvspecstbl.TVID = tvimagetbl.TVID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0 ORDER BY Views DESC LIMIT 8;";
+                                        $sql_popular = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0 ORDER BY Views DESC LIMIT 8;";
                                         $result_popular = mysqli_query($conn, $sql_popular);
                                         while ($row_popular = mysqli_fetch_assoc($result_popular)) :
                                             $TVID = $row_popular['TVID'];
                                             $TVName = $row_popular['TVName'];
                                             $BrandName = $row_popular['BrandName'];
                                             $TVPrice = $row_popular['TVPrice'];
-                                            $TVImage = $row_popular['TVImage'];
+                                            // $TVImage = $row_popular['TVImage'];
+                                            $sql_image2 = "SELECT * FROM tvimagetbl WHERE TVID = $TVID limit 1;";
+                                                    $result_image2 = mysqli_query($conn, $sql_image2);
+                                                    $row_image2 = mysqli_fetch_assoc($result_image2);
                                     ?>
                                     <!-- product-item start -->
                                     <div class="col-md-3 col-sm-4 col-xs-12">
                                         <div class="product-item product-item-2">
                                             <div class="product-img">
                                                 <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                                <img src="AdminLTE/images/<?php echo $TVImage; ?>" alt="" style="object-fit: cover;width: 270px;height: 270px;" />
+                                                <img src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="" style="object-fit: cover;width: 100%;height: 100%;" />
                                                 </a>
                                             </div>
                                             <div class="product-info">

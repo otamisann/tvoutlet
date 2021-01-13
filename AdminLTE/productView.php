@@ -96,12 +96,12 @@ $page = 'productview';
                                             <tbody>
                                                 <!-- tv1 -->
                                                 <?php
-                                                $sql_products = "SELECT * FROM tvspecstbl as t JOIN brandtbl as b ON t.TVBrandID = b.BrandID JOIN tvimagetbl as i ON i.TVID = t.TVID WHERE t.IsDelete = 0;";
+                                                $sql_products = "SELECT * FROM tvspecstbl as t JOIN brandtbl as b ON t.TVBrandID = b.BrandID  WHERE t.IsDelete = 0;";
                                                 $result_products = mysqli_query($conn, $sql_products);
                                                 while ($row = mysqli_fetch_assoc($result_products)) :
 
                                                     $ID = $row['TVID'];
-                                                    $TVImage = $row['TVImage'];
+                                                    // $TVImage = $row['TVImage'];
                                                     $Name = $row['TVName'];
                                                     $Brand = $row['BrandName'];
                                                     $Model = $row['TVModel'];
@@ -110,16 +110,21 @@ $page = 'productview';
                                                     $sql_stock = "SELECT SUM(StockQuantity) FROM stockcontroltbl WHERE TVID = '$ID';";
                                                     $result_stocks = mysqli_query($conn, $sql_stock);
                                                     $StockControlSum = mysqli_fetch_assoc($result_stocks);
+
+                                                    $sql_image = "SELECT * FROM tvimagetbl WHERE TVID = $ID limit 1;";
+                                                    $result_image = mysqli_query($conn, $sql_image);
+                                                    $row_image = mysqli_fetch_assoc($result_image);
+
                                                 ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo $ID; ?></td>
                                                         <td class="text-center">
-                                                            <center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="images/<?php echo $TVImage; ?>" alt="Attachment Image"></center><span><a href="viewimages.html" style="color: #ff7f00">View images</a></span>
+                                                            <center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="images/<?php echo $row_image['TVImage']; ?>" alt="Attachment Image"></center><span><a href="viewimages.php?TVID=<?php echo $ID; ?>" style="color: #ff7f00">View images</a></span>
                                                         </td>
                                                         <td><?php echo $Name; ?> <p class="text-muted">Model: <?php echo $Model; ?><br>Brand: <?php echo $Brand; ?></p>
                                                         </td>
                                                         <td>
-                                                            <span class="<?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $StockControlSum['SUM(StockQuantity)']; ?>)<br> <span><a href="#" style="color: #ff7f00">Update stock</a></span>
+                                                            <span class="<?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $StockControlSum['SUM(StockQuantity)']; ?>)<br> <span><a href="updatestock.php" style="color: #ff7f00">Update stock</a></span>
                                                         </td>
                                                         <td>₱ <?php echo number_format($Price, 2); ?></td>
                                                         <td class="justify-content-between align-middle">

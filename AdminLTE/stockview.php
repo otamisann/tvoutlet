@@ -93,7 +93,6 @@ $page = 'stockview';
                                                 $sql_products = "SELECT * FROM tvspecstbl as t JOIN brandtbl as b ON t.TVBrandID = b.BrandID JOIN tvimagetbl as i ON i.TVID = t.TVID WHERE t.IsDelete = 0;";
                                                 $result_products = mysqli_query($conn, $sql_products);
                                                 while ($row = mysqli_fetch_assoc($result_products)) :
-
                                                     $ID = $row['TVID'];
                                                     $Quantity = $row['TVQuantity'];
                                                     $TVImage = $row['TVImage'];
@@ -102,20 +101,16 @@ $page = 'stockview';
                                                     $Model = $row['TVModel'];
                                                     $Price = $row['TVPrice'];
                                                     $totalPrice = $Price * $Quantity;
-
-                                                    $sql_stock = "SELECT SUM(StockQuantity) FROM stockcontroltbl WHERE TVID = '$ID';";
-                                                    $result_stocks = mysqli_query($conn, $sql_stock);
-                                                    $StockControlSum = mysqli_fetch_assoc($result_stocks);
                                                 ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo $ID; ?></td>
                                                         <td class="text-center">
-                                                            <center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="images/<?php echo $TVImage; ?>" alt="Attachment Image"></center><span><a href="viewimages.html" style="color: #ff7f00">View images</a></span>
+                                                            <center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="images/<?php echo $TVImage; ?>" alt="Attachment Image"></center>
                                                         </td>
                                                         <td><?php echo $Name; ?> <p class="text-muted">Model: <?php echo $Model; ?><br>Brand: <?php echo $Brand; ?></p>
                                                         </td>
                                                         <td>
-                                                            <span class="<?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $StockControlSum['SUM(StockQuantity)']; ?>)<br> <span><a href="updatestock.php" style="color: #ff7f00">Update stock</a></span>
+                                                            <span class="<?php echo ($Quantity < 5 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($Quantity < 10 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $Quantity; ?>)<br> <span><a href="updatestock.php" style="color: #ff7f00">Update stock</a></span>
                                                         </td>
                                                         <td>₱ <?php echo number_format($Price, 2); ?></td>
                                                         <td>₱ <?php echo number_format($totalPrice, 2); ?></td>

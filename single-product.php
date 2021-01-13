@@ -48,10 +48,14 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
             $new_view = $row_product['Views'] + 1;
             $sql_update_view = "UPDATE tvspecstbl SET Views = $new_view WHERE TVID = '$_GET[TVID]';";
             $result_update_view = mysqli_query($conn, $sql_update_view);
+            // sql images
+            $sql_image = "SELECT * from tvimagetbl WHERE TVID = '$_GET[TVID]' LIMIT 1;";
+            $result_image = mysqli_query($conn, $sql_image);
+            $row_image = mysqli_fetch_assoc($result_image);
             ?>
 
             <!-- SHOP SECTION START -->
-            <div class="shop-section mb-80">
+            <div class="shop-section">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-9 col-xs-12">
@@ -61,40 +65,24 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                     <!-- imgs-zoom-area start -->
                                     <div class="col-md-5 col-sm-5 col-xs-12">
                                         <div class="imgs-zoom-area">
-                                            <img id="zoom_03" src="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" style="object-fit: cover;width: 300px;height: 270px;" data-zoom-image="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" alt="">
+                                            <!-- main image -->
+                                            <img id="zoom_03" src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" style="object-fit: cover;width: 300px;height: 270px;" data-zoom-image="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="">
                                             <div class="row">
                                                 <div class="col-xs-12">
                                                     <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" data-zoom-image="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg">
-                                                                <img class="zoom_03" src="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" data-zoom-image="img/product/3.jpg">
-                                                                <img class="zoom_03" src="https://www.lg.com/ph/images/tvs/md06220897/gallery/DM_01_vv.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/4.jpg" data-zoom-image="img/product/4.jpg">
-                                                                <img class="zoom_03" src="img/product/4.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/5.jpg" data-zoom-image="img/product/5.jpg">
-                                                                <img class="zoom_03" src="img/product/5.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/6.jpg" data-zoom-image="img/product/6.jpg">
-                                                                <img class="zoom_03" src="img/product/6.jpg" alt="">
-                                                            </a>
-                                                        </div>
-                                                        <div class="p-c">
-                                                            <a href="#" data-image="img/product/7.jpg" data-zoom-image="img/product/7.jpg">
-                                                                <img class="zoom_03" src="img/product/7.jpg" alt="">
-                                                            </a>
-                                                        </div>
+                                                        <!-- images 1 -->
+                                                        <?php
+                                                        $sql_image2 = "SELECT * from tvimagetbl WHERE TVID = '$_GET[TVID]';";
+                                                        $result_image2 = mysqli_query($conn, $sql_image2);
+                                                        while ($row_image2 = mysqli_fetch_assoc($result_image2)) :
+                                                            $tvimage = $row_image2['TVImage'];
+                                                        ?>
+                                                            <div class="p-c">
+                                                                <a href="#" data-image="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" data-zoom-image="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>">
+                                                                    <img class="zoom_03" src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="">
+                                                                </a>
+                                                            </div>
+                                                        <?php endwhile; ?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -105,6 +93,9 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <br>
                                         <div class="single-product-info">
+
+                                            <h3 class="text-black-1"><?php echo $row_product['TVName']; ?></h3>
+                                            <h6 class="brand-name-1">MODEL : <?php echo $row_product['TVModel']; ?></h6>
                                             <div class="pro-rating sin-pro-rating f-right">
                                                 <a href="#" tabindex="0"><i class="zmdi zmdi-star"></i></a>
                                                 <a href="#" tabindex="0"><i class="zmdi zmdi-star"></i></a>
@@ -113,30 +104,15 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                                 <a href="#" tabindex="0"><i class="zmdi zmdi-star-outline"></i></a>
                                                 <span class="text-black-5">( 27 Rating)</span>
                                             </div>
-                                            <h3 class="text-black-1"><?php echo $row_product['TVName']; ?></h3>
-                                            <h6 class="brand-name-1">MODEL : <?php echo $row_product['TVModel']; ?></h6>
                                             <h6 class="brand-name-2"><?php echo $row_product['BrandName']; ?></h6>
-                                            <!--  hr -->
                                             <hr>
-                                            <!-- plus-minus-pro-action -->
                                             <div class="plus-minus-pro-action clearfix">
-                                                <div class="sin-plus-minus f-left clearfix">
-                                                    <p class="color-title f-left">Qty</p>
-                                                    <div class="cart-plus-minus f-left">
-                                                        <input type="number" value="1" min="1" max="7" maxlength="7" name="qtybutton" class="cart-plus-minus-box">
-                                                    </div>
-                                                </div>
+                                                <h2 class="pro-price f-left"> ₱<?php echo number_format($row_product['TVPrice'], 2); ?></h2>
                                                 <div class="sin-pro-action f-right">
                                                     <ul class="action-button">
                                                         <li>
                                                             <a href="#" title="Add to Wishlist" tabindex="0"><i class="zmdi zmdi-favorite"></i></a>
                                                         </li>
-                                                        <!-- <li>
-                                                            <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview" tabindex="0"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                        </li> -->
-                                                        <!-- <li>
-                                                            <a href="#" title="Add to cart" tabindex="0"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
-                                                        </li> -->
                                                         <li>
                                                             <a href="#" title="Share to Facebook" tabindex="0"><i class="zmdi zmdi-facebook"></i></a>
                                                         </li>
@@ -146,12 +122,6 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <!-- plus-minus-pro-action end -->
-                                            <!-- hr -->
-                                            <hr>
-                                            <!-- single-product-price -->
-                                            <h3 class="pro-price">Price: ₱ <?php echo number_format($row_product['TVPrice'], 2); ?></h3>
-                                            <!--  hr -->
                                             <hr>
                                             <div>
                                                 <a href="#" class="button extra-small button-black" tabindex="-1">
@@ -295,33 +265,43 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                 </div>
                                 <!-- product-item end -->
                             </aside>
-
-                            <aside class="widget widget-categories box-shadow ">
-                                <h6 class="widget-title border-left mb-20">TV's</h6>
-                                <div id="cat-treeview" class="product-cat">
-                                    <ul>
-                                        <ul>
-                                            <li><a href="#">LED</a></li>
-                                            <li><a href="#">LCD</a></li>
-                                            <li><a href="#">Smart TV</a></li>
-                                            <li><a href="#">Android TV</a></li>
-                                            <li><a href="#">Premium Tv</a></li>
-                                        </ul>
-                                    </ul>
-                                </div>
-                                <br>
-                                <h6 class="widget-title border-left mb-20">Manufacturer</h6>
-                                <div id="cat-treeview" class="product-cat">
-                                    <ul>
-                                        <ul>
-                                            <li><a href="#">SAMSUNG</a></li>
-                                            <li><a href="#">TCL</a></li>
-                                            <li><a href="#">LG</a></li>
-                                            <li><a href="#">SONY</a></li>
-                                            <li><a href="#">Skyworth</a></li>
-                                        </ul>
-                                    </ul>
-                                </div>
+                            <!-- aside tv screen types -->
+                            <aside class="widget operating-system box-shadow mb-30">
+                                <h6 class="widget-title border-left mb-20">TV Type</h6>
+                                <!-- php -->
+                                <?php
+                                $sql_tech = "SELECT ScreenTechID,tvscreentechtbl.ScreenTechName,COUNT(tvscreentechtbl.ScreenTechID) as count_tech FROM `tvspecstbl` RIGHT JOIN tvscreentechtbl ON tvspecstbl.TVScreenTech = tvscreentechtbl.ScreenTechID WHERE tvspecstbl.IsDelete = 0 GROUP by tvscreentechtbl.ScreenTechName;";
+                                $res_tech = mysqli_query($conn, $sql_tech);
+                                ?>
+                                <ul>
+                                    <li><a href="shop.php">All</a></li>
+                                    <?php while ($row_tech = mysqli_fetch_assoc($res_tech)) :
+                                        $screenid = $row_tech['ScreenTechID'];
+                                        $screenname = $row_tech['ScreenTechName'];
+                                        $tech_count = $row_tech['count_tech'];
+                                    ?>
+                                        <li><a href="shop_results.php?screen_tech=<?php echo $screenid; ?>"><?php echo $screenname . ' (' . $tech_count . ')'; ?></a></li>
+                                    <?php endwhile; ?>
+                                </ul>
+                            </aside>
+                            <!-- aside brands -->
+                            <aside class="widget operating-system box-shadow mb-30">
+                                <h6 class="widget-title border-left mb-20">TV Manufacturer</h6>
+                                <!-- php -->
+                                <?php
+                                $sql_brands = "SELECT BrandID,BrandName, COUNT(tvspecstbl.TVID) as brandsss FROM `brandtbl` left JOIN tvspecstbl ON BrandID = tvspecstbl.TVBrandID WHERE tvspecstbl.IsDelete = 0 GROUP BY BrandName ORDER BY BrandName ASC;";
+                                $res_brands = mysqli_query($conn, $sql_brands);
+                                ?>
+                                <ul>
+                                    <li><a href="shop.php">All</a></li>
+                                    <?php while ($row_brands = mysqli_fetch_assoc($res_brands)) :
+                                        $brandid = $row_brands['BrandID'];
+                                        $brandname = $row_brands['BrandName'];
+                                        $brand_count = $row_brands['brandsss'];
+                                    ?>
+                                        <li><a href="shop_results.php?brand=<?php echo $brandid; ?>"><?php echo $brandname . ' (' . $brand_count . ')'; ?></a></li>
+                                    <?php endwhile; ?>
+                                </ul>
                             </aside>
 
 

@@ -27,18 +27,18 @@ $page = 'updatestock';
         if (isset($_POST['add'])) {
             $tvid = $_POST['tvid'];
             $quantity = $_POST['quantity'];
-            $query_add = "INSERT INTO stockstbl (tvid,quantity) VALUES ('$tvid','$quantity');";
+            $query_add = "INSERT INTO stockcontroltbl (TVID,StockQuantity) VALUES ('$tvid','$quantity');";
             $result = mysqli_query($conn, $query_add);
 
             // select
-            $sql_select = "SELECT * from tvtbl where tvid = $tvid;";
+            $sql_select = "SELECT * from tvspecstbl where TVID = $tvid;";
             $res_select = mysqli_query($conn, $sql_select);
             $row_quantity = mysqli_fetch_assoc($res_select);
-            $kim = $row_quantity['tvquantity'];
+            $kim = $row_quantity['TVQuantity'];
 
             // update
             $final_quantity = $kim + $quantity;
-            $sql_update = "UPDATE tvtbl SET tvquantity = $final_quantity WHERE tvid = $tvid;";
+            $sql_update = "UPDATE tvspecstbl SET TVQuantity = $final_quantity WHERE TVID = $tvid;";
             $res_update = mysqli_query($conn, $sql_update);
 
             if ($result) { ?>
@@ -93,29 +93,30 @@ $page = 'updatestock';
                         <div class="card-body">
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-8">
                                         <div class="form-group">
                                             <label for="inputName">Select product</label>
                                             <select class="form-control custom-select" name="tvid" required>
                                                 <option selected disabled value="">Select one</option>
                                                 <!-- alphabetical -->
                                                 <?php
-                                                $products = "SELECT * FROM tvtbl ORDER BY tvname ASC";
+                                                $products = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE tvspecstbl.IsDelete = 0 ORDER BY tvname ASC";
                                                 $result_prod = mysqli_query($conn, $products);
                                                 while ($row = mysqli_fetch_assoc($result_prod)) :
-                                                    $tvid = $row['tvid'];
-                                                    $tvname = $row['tvname'];
-                                                    $tvquantity = $row['tvquantity'];
+                                                    $tvid = $row['TVID'];
+                                                    $tvname = $row['TVName'];
+                                                    $tvbrand = $row['BrandName'];
+                                                    $tvquantity = $row['TVQuantity'];
                                                 ?>
-                                                    <option value="<?php echo $tvid; ?>"><?php echo $tvname; ?></option>
+                                                    <option value="<?php echo $tvid; ?>"><?php echo $tvbrand; ?> - <?php echo $tvname; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label for="inputName">Quantity</label>
-                                            <input type="number" name="quantity" class="form-control" required>
+                                            <input type="number" name="quantity" class="form-control" min="1" required>
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex align-self-end justify-content-lg-end">
