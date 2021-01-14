@@ -124,7 +124,7 @@ $page = 'productview';
                                                         <td><?php echo $Name; ?> <p class="text-muted">Model: <?php echo $Model; ?><br>Brand: <?php echo $Brand; ?></p>
                                                         </td>
                                                         <td>
-                                                            <span class="<?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($StockControlSum['SUM(StockQuantity)'] < 10 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $StockControlSum['SUM(StockQuantity)']; ?>)<br> <span><a href="updatestock.php" style="color: #ff7f00">Update stock</a></span>
+                                                            <span class="<?php echo ($StockControlSum['SUM(StockQuantity)'] < 2 ? "text-danger" : "text-success") ?> font-weight-bold"><?php echo ($StockControlSum['SUM(StockQuantity)'] < 2 ? "Out-of-Stock" : "In-Stock") ?></span> (<?php echo $StockControlSum['SUM(StockQuantity)']; ?>)<br> <span><a href="updatestock.php" style="color: #ff7f00">Update stock</a></span>
                                                         </td>
                                                         <td>₱ <?php echo number_format($Price, 2); ?></td>
                                                         <td class="justify-content-between align-middle">

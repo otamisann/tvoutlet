@@ -1,9 +1,13 @@
 <?php
-    require('includes/connection.php');
+session_start();
+require('includes/connection.php');
+
+// print_r($_SESSION);
 ?>
 
 <!doctype html>
 <html class="no-js" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -78,7 +82,7 @@
                 <div class="slider-content">
                     <div class="row">
                         <div class="active-slider-1 slick-arrow-1 slick-dots-1">
-                            
+
                             <!-- layer-1 end -->
                             <!-- layer-1 Start -->
                             <div class="col-md-12 h-75">
@@ -127,49 +131,49 @@
                     </div>
                     <!-- php -->
                     <?php
-                        $sql_new = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0;";
-                        $result_new = mysqli_query($conn, $sql_new);
+                    $sql_new = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0;";
+                    $result_new = mysqli_query($conn, $sql_new);
                     ?>
                     <div class="featured-product">
                         <div class="row active-featured-product slick-arrow-2">
-                    <?php while ($row_new = mysqli_fetch_assoc($result_new)) :
+                            <?php while ($row_new = mysqli_fetch_assoc($result_new)) :
                                 $TVID = $row_new['TVID'];
                                 $TVName = $row_new['TVName'];
                                 $BrandName = $row_new['BrandName'];
                                 $TVPrice = $row_new['TVPrice'];
                                 // $TVImage = $row_new['TVImage'];
                                 $sql_image = "SELECT * FROM tvimagetbl WHERE TVID = $TVID limit 1;";
-                                                    $result_image = mysqli_query($conn, $sql_image);
-                                                    $row_image = mysqli_fetch_assoc($result_image);
-                                
-                    ?>
-                            <!-- product-item start -->
-                            <div class="col-xs-12">
-                                <div class="product-item product-item-2">
-                                    <div class="product-img">
-                                        <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                            <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="object-fit: cover;width: 100%;height: 100%;" />
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="single-product.php?TVID=<?php echo $TVID; ?>"><?php echo $TVName; ?></a>
-                                        </h6>
-                                        <h6 class="brand-name"><?php echo $BrandName; ?></h6>
-                                        <h3 class="pro-price">₱ <?php echo number_format($TVPrice,2); ?></h3>
-                                    </div>
-                                    <ul class="action-button text-center">
-                                        <li>
-                                            <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                        </li>
-                                        <!-- <li>
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+
+                            ?>
+                                <!-- product-item start -->
+                                <div class="col-xs-12">
+                                    <div class="product-item product-item-2">
+                                        <div class="product-img">
+                                            <a href="single-product.php?TVID=<?php echo $TVID; ?>">
+                                                <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="width: 100%;height: 250px;" />
+                                            </a>
+                                        </div>
+                                        <div class="product-info">
+                                            <h6 class="product-title">
+                                                <a href="single-product.php?TVID=<?php echo $TVID; ?>"><?php echo $TVName; ?></a>
+                                            </h6>
+                                            <h6 class="brand-name"><?php echo $BrandName; ?></h6>
+                                            <h3 class="pro-price">₱ <?php echo number_format($TVPrice, 2); ?></h3>
+                                        </div>
+                                        <ul class="action-button text-center">
+                                            <li>
+                                                <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                            </li>
+                                            <!-- <li>
                                             <a href="#" title="Add to cart"><i class="zmdi zmdi-shopping-cart-plus"></i></a>
                                         </li> -->
-                                    </ul>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- product-item end -->
-                    <?php endwhile; ?>
+                                <!-- product-item end -->
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
@@ -201,8 +205,8 @@
                             </div>
                         </div>
                         <div class="col-md-4 hidden-sm col-xs-12">
-                            <div class="banner-item banner-1" >
-                                <div class="ribbon-price" >
+                            <div class="banner-item banner-1">
+                                <div class="ribbon-price">
                                     <span>Premium</span>
                                 </div>
                                 <div class="banner-img">
@@ -258,41 +262,41 @@
                                 <div class="row">
                                     <!-- php -->
                                     <?php
-                                        $sql_popular = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0 ORDER BY Views DESC LIMIT 8;";
-                                        $result_popular = mysqli_query($conn, $sql_popular);
-                                        while ($row_popular = mysqli_fetch_assoc($result_popular)) :
-                                            $TVID = $row_popular['TVID'];
-                                            $TVName = $row_popular['TVName'];
-                                            $BrandName = $row_popular['BrandName'];
-                                            $TVPrice = $row_popular['TVPrice'];
-                                            // $TVImage = $row_popular['TVImage'];
-                                            $sql_image2 = "SELECT * FROM tvimagetbl WHERE TVID = $TVID limit 1;";
-                                                    $result_image2 = mysqli_query($conn, $sql_image2);
-                                                    $row_image2 = mysqli_fetch_assoc($result_image2);
+                                    $sql_popular = "SELECT * FROM tvspecstbl join brandtbl ON TVBrandID = BrandID WHERE InputDate >= '2021-01-08 00:00:00' AND InputDate <= CURRENT_TIMESTAMP AND tvspecstbl.IsDelete = 0 ORDER BY Views DESC LIMIT 8;";
+                                    $result_popular = mysqli_query($conn, $sql_popular);
+                                    while ($row_popular = mysqli_fetch_assoc($result_popular)) :
+                                        $TVID = $row_popular['TVID'];
+                                        $TVName = $row_popular['TVName'];
+                                        $BrandName = $row_popular['BrandName'];
+                                        $TVPrice = $row_popular['TVPrice'];
+                                        // $TVImage = $row_popular['TVImage'];
+                                        $sql_image2 = "SELECT * FROM tvimagetbl WHERE TVID = $TVID limit 1;";
+                                        $result_image2 = mysqli_query($conn, $sql_image2);
+                                        $row_image2 = mysqli_fetch_assoc($result_image2);
                                     ?>
-                                    <!-- product-item start -->
-                                    <div class="col-md-3 col-sm-4 col-xs-12">
-                                        <div class="product-item product-item-2">
-                                            <div class="product-img">
-                                                <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                                <img src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="" style="object-fit: cover;width: 100%;height: 100%;" />
-                                                </a>
+                                        <!-- product-item start -->
+                                        <div class="col-md-3 col-sm-4 col-xs-12">
+                                            <div class="product-item product-item-2">
+                                                <div class="product-img">
+                                                    <a href="single-product.php?TVID=<?php echo $TVID; ?>">
+                                                        <img src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="" style="width: 100%;height: 250px;" />
+                                                    </a>
+                                                </div>
+                                                <div class="product-info">
+                                                    <h6 class="product-title">
+                                                        <a href="single-product.php?TVID=<?php echo $TVID; ?>"><?php echo $TVName; ?></a>
+                                                    </h6>
+                                                    <h6 class="brand-name"><?php echo $BrandName; ?></h6>
+                                                    <h3 class="pro-price">₱<?php echo number_format($TVPrice, 2); ?></h3>
+                                                </div>
+                                                <ul class="action-button text-center">
+                                                    <li>
+                                                        <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                            <div class="product-info">
-                                                <h6 class="product-title">
-                                                    <a href="single-product.php?TVID=<?php echo $TVID; ?>"><?php echo $TVName; ?></a>
-                                                </h6>
-                                                <h6 class="brand-name"><?php echo $BrandName; ?></h6>
-                                                <h3 class="pro-price">₱<?php echo number_format($TVPrice,2); ?></h3>
-                                            </div>
-                                            <ul class="action-button text-center">
-                                                <li>
-                                                    <a href="#" title="Wishlist"><i class="zmdi zmdi-favorite"></i></a>
-                                                </li>
-                                            </ul>
                                         </div>
-                                    </div>
-                                        <?php endwhile; ?>
+                                    <?php endwhile; ?>
                                     <!-- product-item end -->
                                 </div>
                             </div>

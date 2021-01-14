@@ -72,7 +72,7 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                                     <div id="gallery_01" class="carousel-btn slick-arrow-3 mt-30">
                                                         <!-- images 1 -->
                                                         <?php
-                                                        $sql_image2 = "SELECT * from tvimagetbl WHERE TVID = '$_GET[TVID]';";
+                                                        $sql_image2 = "SELECT * from tvimagetbl WHERE TVID = '$_GET[TVID]' and IsDelete = 0;";
                                                         $result_image2 = mysqli_query($conn, $sql_image2);
                                                         while ($row_image2 = mysqli_fetch_assoc($result_image2)) :
                                                             $tvimage = $row_image2['TVImage'];
@@ -105,6 +105,8 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                                 <span class="text-black-5">( 27 Rating)</span>
                                             </div>
                                             <h6 class="brand-name-2"><?php echo $row_product['BrandName']; ?></h6>
+                                            <h5 class="text-sucess">In-Stock (23 units available)</h5>
+
                                             <hr>
                                             <div class="plus-minus-pro-action clearfix">
                                                 <h2 class="pro-price f-left"> ₱<?php echo number_format($row_product['TVPrice'], 2); ?></h2>

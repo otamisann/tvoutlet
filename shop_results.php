@@ -115,7 +115,7 @@ if (isset($_GET['brand'])) {
                                                         <div class="product-item">
                                                             <div class="product-img">
                                                                 <a href="single-product.php?TVID=<?php echo $tvid; ?>">
-                                                                    <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" />
+                                                                    <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="width: 100%;height: 250px;" />
                                                                 </a>
                                                             </div>
                                                             <div class="product-info">
@@ -201,7 +201,7 @@ if (isset($_GET['brand'])) {
                                                         <div class="shop-list product-item">
                                                             <div class="product-img">
                                                                 <a href="single-product.php?TVID=<?php echo $tvid; ?>">
-                                                                    <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" />
+                                                                    <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="width: 100%;height: 270px;" />
                                                                 </a>
                                                             </div>
                                                             <div class="product-info">

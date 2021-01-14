@@ -24,12 +24,21 @@
                                     Wish List (0)
                                 </a>
                             </li>
+                            <?php if (isset($_SESSION['user_id'])) { ?>
                             <li>
-                                <a href="login.html">
+                                <a href="logout.php">
+                                    <i class="zmdi zmdi-lock"></i>
+                                    Logout
+                                </a>
+                            </li>
+                            <?php } else { ?>
+                                <li>
+                                <a href="login.php">
                                     <i class="zmdi zmdi-lock"></i>
                                     Login
                                 </a>
                             </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>

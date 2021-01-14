@@ -79,7 +79,7 @@ $page = 'stockview';
                                             <thead>
                                                 <tr>
                                                     <th style="width: 3%;">#</th>
-                                                    <th>Image</th>
+                                                    <!-- <th>Image</th> -->
                                                     <th style="width: 30%;">Product</th>
                                                     <th style="width: 15%;">Stock</th>
                                                     <th>Unit Price</th>
@@ -90,12 +90,12 @@ $page = 'stockview';
                                             <tbody>
                                                 <!-- tv1 -->
                                                 <?php
-                                                $sql_products = "SELECT * FROM tvspecstbl as t JOIN brandtbl as b ON t.TVBrandID = b.BrandID JOIN tvimagetbl as i ON i.TVID = t.TVID WHERE t.IsDelete = 0;";
+                                                $sql_products = "SELECT * FROM tvspecstbl as t JOIN brandtbl as b ON t.TVBrandID = b.BrandID WHERE t.IsDelete = 0;";
                                                 $result_products = mysqli_query($conn, $sql_products);
                                                 while ($row = mysqli_fetch_assoc($result_products)) :
                                                     $ID = $row['TVID'];
                                                     $Quantity = $row['TVQuantity'];
-                                                    $TVImage = $row['TVImage'];
+                                                    // $TVImage = $row['TVImage'];
                                                     $Name = $row['TVName'];
                                                     $Brand = $row['BrandName'];
                                                     $Model = $row['TVModel'];
@@ -104,9 +104,9 @@ $page = 'stockview';
                                                 ?>
                                                     <tr>
                                                         <td class="text-center"><?php echo $ID; ?></td>
-                                                        <td class="text-center">
+                                                        <!-- <td class="text-center">
                                                             <center><img class="attachment-img" style="object-fit: scale-down;height: 90px;width: 90px;" src="images/<?php echo $TVImage; ?>" alt="Attachment Image"></center>
-                                                        </td>
+                                                        </td> -->
                                                         <td><?php echo $Name; ?> <p class="text-muted">Model: <?php echo $Model; ?><br>Brand: <?php echo $Brand; ?></p>
                                                         </td>
                                                         <td>

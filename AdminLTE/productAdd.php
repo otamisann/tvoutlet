@@ -242,6 +242,8 @@ $page = 'productadd';
                                                 <option value="8K">8K</option>
                                                 <option value="FullHD">FullHD</option>
                                                 <option value="UHD4K">UHD4K</option>
+                                                <option value="8KUHD">UHD8K</option>
+                                                <option value="8K">8K</option>
                                             </select>
                                         </div>
                                     </div>

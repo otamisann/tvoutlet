@@ -38,7 +38,7 @@ $page = 'productview';
             <!-- /.content-header -->
             <?php
             $tvid = $_GET['TVID'];
-            $sql3 = "SELECT * FROM tvimagetbl WHERE TVID = $tvid;";
+            $sql3 = "SELECT * FROM tvimagetbl WHERE TVID = $tvid and IsDelete = 0;";
             $result3 = mysqli_query($conn, $sql3);
 
             if (isset($_POST['add_image'])) {
@@ -64,7 +64,28 @@ $page = 'productview';
                             // confirmButtonColor: '#FF7F00'
                         })
                     </script>
-            <?php    }
+            <?php $_SERVER['PHP_SELF'];
+                }
+            }
+
+            if (isset($_POST['remove_image'])) {
+                $imageid = $_POST['imageid'];
+                $sql_remove = "UPDATE tvimagetbl SET IsDelete = 1 WHERE TVImageID = $imageid;";
+                $res_remove = mysqli_query($conn, $sql_remove);
+                if ($res_remove) { ?>
+                <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Image Removed',
+                            // text: 'Invalid email or password',
+                            showConfirmButton: false,
+                            timer: 2000
+                            // confirmButtonText: 'Try again',
+                            // confirmButtonColor: '#FF7F00'
+                        })
+                    </script>
+                <?php  }
+
             }
 
             ?>
@@ -82,22 +103,26 @@ $page = 'productview';
                                 $tvimageid = $row3['TVImageID'];
                             ?>
                                 <div class="col-md-3">
-                                    <div class="card bg-light">
-                                        <div class="card-body pt-0">
-                                            <div class="row">
-                                                <div class="col-12 text-center mt-3">
-                                                    <img src="images/<?php echo $row3['TVImage']; ?>" alt="<?php echo $row3['TVImage']; ?>" class="img-rounded img-fluid">
+                                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                                        <div class="card bg-light">
+                                            <div class="card-body pt-0">
+                                                <div class="row">
+                                                    <div class="col-12 text-center mt-3">
+                                                        <img src="images/<?php echo $row3['TVImage']; ?>" alt="<?php echo $row3['TVImage']; ?>" class="img-rounded img-fluid">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="imageid" value="<?php echo $tvimageid; ?>">
+                                            <div class="card-footer">
+                                                <div class="text-center">
+                                                    <!-- <a href="viewimageds.php?tv=<?php echo $tvimageid; ?>" class="btn btn-sm btn-danger">
+                                                    <i class="fas fa-trash"></i> Remove
+                                                </a> -->
+                                                    <input type="submit" name="remove_image" value="Remove" class="btn btn-danger">
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-footer">
-                                            <div class="text-center">
-                                                <a href="viewimageds.php?tv=<?php echo $tvimageid; ?>" class="btn btn-sm btn-danger">
-                                                    <i class="fas fa-trash"></i> Remove
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </form>
                                 </div>
                                 <!-- img card ends -->
                             <?php endwhile; ?>

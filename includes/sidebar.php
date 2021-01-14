@@ -118,6 +118,14 @@ $row = mysqli_fetch_assoc($result);
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-at"></i>
+                        <p>
+                            Email Lists
+                        </p>
+                    </a>
+                </li>
                 <li class="nav-header">Maintenance</li>
                 <li class="nav-item">
                     <a href="banners.html" class="nav-link">

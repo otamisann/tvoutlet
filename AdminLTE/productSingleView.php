@@ -24,10 +24,10 @@ $page = 'productview';
         <!-- /.navbar -->
         <!-- php -->
         <?php
-            $TVID = $_GET['TVID'];
-            $sql_product = "SELECT * FROM tvspecstbl JOIN brandtbl ON tvspecstbl.TVBrandID = brandtbl.BrandID JOIN tvscreentechtbl ON tvspecstbl.TVScreenTech = tvscreentechtbl.ScreenTechID  WHERE TVID = $TVID;";
-            $result = mysqli_query($conn, $sql_product);
-            $row = mysqli_fetch_assoc($result);
+        $TVID = $_GET['TVID'];
+        $sql_product = "SELECT * FROM tvspecstbl JOIN brandtbl ON tvspecstbl.TVBrandID = brandtbl.BrandID JOIN tvscreentechtbl ON tvspecstbl.TVScreenTech = tvscreentechtbl.ScreenTechID  WHERE TVID = $TVID;";
+        $result = mysqli_query($conn, $sql_product);
+        $row = mysqli_fetch_assoc($result);
 
         ?>
         <!-- php -->
@@ -54,24 +54,21 @@ $page = 'productview';
                                 <h3 class="d-inline-block d-sm-none"><?php echo $row['TVName']; ?></h3>
                                 <!--  -->
                                 <?php
-                                    $sql_image = "Select * from tvimagetbl where TVID = $TVID and IsDelete = 0;";
-                                    $result_image = mysqli_query($conn, $sql_image);
-                                    $row_image = mysqli_fetch_assoc($result_image);
+                                $sql_image = "Select * from tvimagetbl where TVID = $TVID and IsDelete = 0;";
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+
+                                $sql_image2 = "Select * from tvimagetbl where TVID = $TVID and IsDelete = 0;";
+                                $result_image2 = mysqli_query($conn, $sql_image2);
+
                                 ?>
                                 <div class="col-12">
                                     <img src="images/<?php echo $row_image['TVImage']; ?>" class="product-image" alt="Product Image">
                                 </div>
                                 <div class="col-12 product-image-thumbs">
-                                    <div class="product-image-thumb active"><img src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg"
-                                            alt="Product Image"></div>
-                                    <div class="product-image-thumb"><img src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg"
-                                            alt="Product Image"></div>
-                                    <div class="product-image-thumb"><img src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg"
-                                            alt="Product Image"></div>
-                                    <div class="product-image-thumb"><img src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg"
-                                            alt="Product Image"></div>
-                                    <div class="product-image-thumb"><img src="https://www.lg.com/ph/images/tvs/md06251185/gallery/1100-3.jpg"
-                                            alt="Product Image"></div>
+                                    <?php while ($row_image2 = mysqli_fetch_assoc($result_image2)) : $tvimage = $row_image2['TVImage']; ?>
+                                        <div class="product-image-thumb active"><img src="images/<?php echo $row_image2['TVImage']; ?>" alt="Product Image"></div>
+                                    <?php endwhile; ?>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
@@ -81,11 +78,11 @@ $page = 'productview';
 
                                 <hr>
                                 <h3><span class="badge badge-info font-weight-light"><?php echo $row['TVScreensize']; ?>"</span>
-                                <span class="badge badge-info font-weight-light"><?php echo $row['ScreenTechName']; ?></span>
-                                <span class="badge badge-info font-weight-light"><?php echo $row['TVFeature']; ?></span></h3>
+                                    <span class="badge badge-info font-weight-light"><?php echo $row['ScreenTechName']; ?></span>
+                                    <span class="badge badge-info font-weight-light"><?php echo $row['TVFeature']; ?></span></h3>
                                 <div style="background-color: #ff7f00;color: white;" class="py-2 px-3 mt-4">
                                     <h2 class="mb-0">
-                                        Price: ₱<?php echo number_format($row['TVPrice'],2); ?>
+                                        Price: ₱<?php echo number_format($row['TVPrice'], 2); ?>
                                     </h2>
                                 </div>
 
@@ -94,34 +91,27 @@ $page = 'productview';
                         <div class="row mt-4">
                             <nav class="w-100">
                                 <div class="nav nav-tabs" id="product-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab"
-                                        href="#product-specs" role="tab" aria-controls="product-desc"
-                                        aria-selected="true">Specifications</a>
-                                    <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab"
-                                        href="#product-others" role="tab" aria-controls="product-comments"
-                                        aria-selected="false">Others</a>
-                                    <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab"
-                                        href="#product-rating" role="tab" aria-controls="product-rating"
-                                        aria-selected="false">Rating</a>
+                                    <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab" href="#product-specs" role="tab" aria-controls="product-desc" aria-selected="true">Specifications</a>
+                                    <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab" href="#product-others" role="tab" aria-controls="product-comments" aria-selected="false">Others</a>
+                                    <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab" href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
                                 </div>
                             </nav>
                             <div class="tab-content p-3" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="product-specs" role="tabpanel"
-                                    aria-labelledby="product-desc-tab">
+                                <div class="tab-pane fade show active" id="product-specs" role="tabpanel" aria-labelledby="product-desc-tab">
                                     <pre><?php echo $row['TVOtherDesc']; ?></pre>
                                     <p><span class="font-weight-bold">Resolution: </span> <?php echo $row['TVResolution']; ?></p>
                                 </div>
 
-                                <div class="tab-pane fade" id="product-others" role="tabpanel"
-                                    aria-labelledby="product-comments-tab">
+                                <div class="tab-pane fade" id="product-others" role="tabpanel" aria-labelledby="product-comments-tab">
                                     <p><span class="font-weight-bold">Dimension: </span> <?php echo $row['TVDimension']; ?></p>
                                     <p><span class="font-weight-bold">Warranty: </span> <?php echo $row['TVWarrantyPeriod']; ?></p>
                                     <p><span class="font-weight-bold">Release Date: </span> <?php echo $row['TVReleaseDate']; ?></p>
-                                    <p><span class="font-weight-bold">What's in the box: </span> <pre><?php echo $row['TVWhatsInTheBox']; ?></pre></p>
+                                    <p><span class="font-weight-bold">What's in the box: </span>
+                                        <pre><?php echo $row['TVWhatsInTheBox']; ?></pre>
+                                    </p>
                                 </div>
-                                    
-                                <div class="tab-pane fade" id="product-rating" role="tabpanel"
-                                    aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non,
+
+                                <div class="tab-pane fade" id="product-rating" role="tabpanel" aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non,
                                     posuere elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id
                                     fermentum risus efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel
                                     ipsum felis. Ut molestie, purus aliquam placerat sollicitudin, mi ligula euismod
