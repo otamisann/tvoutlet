@@ -52,7 +52,7 @@
         <li><a href="shop_results.php?low=15001&high=25000">15,001 - 25,000</a></li>
         <li><a href="shop_results.php?low=25001&high=30000">25.001 - 30,000</a></li>
         <li><a href="shop_results.php?low=30001&high=55000">30,001 - 55,000</a></li>
-        <li><a href="shop_results.php?low=55001&high=100000">55,001 - >100,000</a></li>
+        <li><a href="shop_results.php?low=55001&high=10000000">55,001 - >100,000</a></li>
     </ul>
 </aside>
 <!--tv size -->

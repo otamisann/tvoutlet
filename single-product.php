@@ -1,7 +1,9 @@
 <?php
+session_start();
 require('includes/connection.php');
-$_SESSION['recent_product'] = $_GET['TVID'];
-$_SESSION['most_recent'] = $_SESSION['recent_product'];
+// $_SESSION['most_recent'] = $_SESSION['recent_product'];
+$_SESSION['order_item']  = $_GET['TVID'];
+// print_r($_SESSION);
 ?>
 <!doctype html>
 <html class="no-js" lang="en">
@@ -52,6 +54,37 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
             $sql_image = "SELECT * from tvimagetbl WHERE TVID = '$_GET[TVID]' LIMIT 1;";
             $result_image = mysqli_query($conn, $sql_image);
             $row_image = mysqli_fetch_assoc($result_image);
+
+            if (isset($_SESSION['added_to_cart'])) {
+                if ($_SESSION['added_to_cart'] == 1) { ?>
+                    <script>
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Item added to cart',
+                            showConfirmButton: false,
+                            timer: 2000
+                            // text: 'please',
+                            // confirmButtonText: 'Try again',
+                            // confirmButtonColor: '#FF7F00'
+                        })
+                    </script>
+                <?php unset($_SESSION['added_to_cart']);
+                } elseif ($_SESSION['added_to_cart'] == 0) { ?>
+                    <script>
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Item not added to cart',
+                            showConfirmButton: false,
+                            timer: 2000
+                            // text: 'please',
+                            // confirmButtonText: 'Try again',
+                            // confirmButtonColor: '#FF7F00'
+                        })
+                    </script>
+            <?php unset($_SESSION['added_to_cart']);
+                }
+            }
+
             ?>
 
             <!-- SHOP SECTION START -->
@@ -60,7 +93,7 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                     <div class="row">
                         <div class="col-md-9 col-xs-12">
                             <!-- single-product-area start -->
-                            <div class="single-product-area mb-80">
+                            <div class="single-product-area mb-10">
                                 <div class="row">
                                     <!-- imgs-zoom-area start -->
                                     <div class="col-md-5 col-sm-5 col-xs-12">
@@ -93,7 +126,7 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <br>
                                         <div class="single-product-info">
-
+                                            <h6 class="text-sucess text-success">In-Stock (<?php echo $row_product['TVQuantity']; ?>) units available</h6>
                                             <h3 class="text-black-1"><?php echo $row_product['TVName']; ?></h3>
                                             <h6 class="brand-name-1">MODEL : <?php echo $row_product['TVModel']; ?></h6>
                                             <div class="pro-rating sin-pro-rating f-right">
@@ -105,7 +138,6 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                                 <span class="text-black-5">( 27 Rating)</span>
                                             </div>
                                             <h6 class="brand-name-2"><?php echo $row_product['BrandName']; ?></h6>
-                                            <h5 class="text-sucess">In-Stock (23 units available)</h5>
 
                                             <hr>
                                             <div class="plus-minus-pro-action clearfix">
@@ -126,12 +158,24 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                             </div>
                                             <hr>
                                             <div>
-                                                <a href="#" class="button extra-small button-black" tabindex="-1">
-                                                    <span class="text-uppercase">Add to cart</span>
-                                                </a>
-                                                <a href="#" class="button extra-small" tabindex="-1">
-                                                    <span class="text-uppercase">Buy now</span>
-                                                </a>
+                                                <!-- buy noow and add to cart btn -->
+                                                <?php
+                                                if (isset($_SESSION['user_id'])) { ?>
+                                                    <a href="add_to_cart.php" class="button extra-small button-black" tabindex="-1">
+                                                        <span class="text-uppercase">Add to cart</span>
+                                                    </a>
+                                                    <a href="#" class="button extra-small" tabindex="-1">
+                                                        <span class="text-uppercase">Buy now</span>
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <!-- Sign in to buy -->
+                                                    <a href="login.php" class="button extra-small " tabindex="-1">
+                                                        <span class="text-uppercase">Log in to Buy</span>
+                                                    </a>
+                                                <?php }
+                                                ?>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -243,10 +287,39 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                         <div class="col-md-3 col-xs-12">
                             <!-- php -->
                             <?php
-                            $recent_id = $_SESSION['recent_product'];
-                            $sql_recent = "SELECT TVName, TVPrice FROM tvspecstbl WHERE TVID = $recent_id;";
-                            $result_recent = mysqli_query($conn, $sql_recent);
-                            $row_recent = mysqli_fetch_assoc($result_recent);
+                            if (!isset($_SESSION['recently_viewed'])) {
+                                $value = $_GET['TVID'];
+                                // $_SESSION['pre_value'] = $value;
+                                // $_SESSION['value'] = $value;
+                                // $_SESSION['recent_product'] = $_GET['TVID'];
+                                // $recent_id = $_SESSION['recent_product'];
+                                $sql_recent = "SELECT TVName, TVPrice FROM tvspecstbl WHERE TVID = $value;";
+                                $result_recent = mysqli_query($conn, $sql_recent);
+                                $row_recent = mysqli_fetch_assoc($result_recent);
+                                // image
+                                $sql_image = "SELECT * from tvimagetbl WHERE TVID = $value LIMIT 1;";
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+                                // set recent product value
+                                $_SESSION['recently_viewed'] = $value;
+                            } elseif (isset($_SESSION['recently_viewed'])) {
+                                $value = $_SESSION['recently_viewed'];
+                                // $_SESSION['pre_value'] = $value;
+                                // $_SESSION['value'] = $value;
+                                // $_SESSION['recent_product'] = $_GET['TVID'];
+                                // $recent_id = $_SESSION['recent_product'];
+                                $sql_recent = "SELECT TVName, TVPrice FROM tvspecstbl WHERE TVID = $value;";
+                                $result_recent = mysqli_query($conn, $sql_recent);
+                                $row_recent = mysqli_fetch_assoc($result_recent);
+                                // image
+                                $sql_image = "SELECT * from tvimagetbl WHERE TVID = $value LIMIT 1;";
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+                                // set recent product value
+                                $_SESSION['recently_viewed'] = $_GET['TVID'];
+                            }
+                            
+                            
                             ?>
 
                             <aside class="widget widget-product box-shadow mb-30">
@@ -254,8 +327,8 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                 <!-- product-item start -->
                                 <div class="product-item">
                                     <div class="product-img">
-                                        <a href="single-product.html">
-                                            <img src="img/product/4.jpg" alt="" />
+                                        <a href="single-product.php?TVID=<?php echo $row_image['TVID'];; ?>">
+                                            <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" />
                                         </a>
                                     </div>
                                     <div class="product-info">
@@ -267,6 +340,7 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                 </div>
                                 <!-- product-item end -->
                             </aside>
+                            
                             <!-- aside tv screen types -->
                             <aside class="widget operating-system box-shadow mb-30">
                                 <h6 class="widget-title border-left mb-20">TV Type</h6>
@@ -305,8 +379,6 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                                     <?php endwhile; ?>
                                 </ul>
                             </aside>
-
-
                         </div>
                     </div>
                 </div>
@@ -324,106 +396,46 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
                             </div>
                         </div>
                         <div class="row">
-                            <!-- product-item start -->
-                            <div class="col-lg-3">
-                                <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="single-product.html">
-                                            <img src="img/product/1.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="single-product.html">Product Name1</a>
-                                        </h6>
-                                        <div class="pro-rating">
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                            <!-- php -->
+                            <?php
+                            $sql_related_products = "SELECT * FROM tvspecstbl WHERE IsDelete = 0 AND TVID != '$_GET[TVID]' ORDER BY RAND() LIMIT 4;";
+                            $res_related_products = mysqli_query($conn, $sql_related_products);
+                            while ($row_related_products = mysqli_fetch_assoc($res_related_products)) :
+                                $tvid = $row_related_products['TVID'];
+                                $prod_name = $row_related_products['TVName'];
+                                $prod_price = $row_related_products['TVPrice'];
+                                // image
+                                $sql_image = "SELECT * FROM tvimagetbl WHERE TVID = $tvid limit 1;";
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+                            ?>
+                                <!-- product-item start -->
+                                <div class="col-lg-3">
+                                    <div class="product-item">
+                                        <div class="product-img">
+                                            <a href="single-product.php?TVID=<?php echo $tvid; ?>">
+                                                <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="object-fit: scale-down;width: 100%;height: 250px;" />
+                                            </a>
                                         </div>
-                                        <h3 class="pro-price">$ 869.00</h3>
+                                        <div class="product-info">
+                                            <h6 class="product-title">
+                                                <a href="single-product.html"><?php echo $prod_name; ?></a>
+                                            </h6>
+                                            <div class="pro-rating">
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-half"></i></a>
+                                                <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
+                                            </div>
+                                            <h3 class="pro-price">$ <?php echo number_format($prod_price, 2); ?></h3>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- product-item end -->
-                            <!-- product-item start -->
-                            <div class="col-lg-3">
-                                <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="single-product.html">
-                                            <img src="img/product/1.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="single-product.html">Product Name2</a>
-                                        </h6>
-                                        <div class="pro-rating">
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                        </div>
-                                        <h3 class="pro-price">$ 869.00</h3>
+                                <!-- product-item end -->
+                            <?php endwhile; ?>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product-item end -->
-                            <!-- product-item start -->
-                            <div class="col-lg-3">
-                                <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="single-product.html">
-                                            <img src="img/product/1.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="single-product.html">Product Name3</a>
-                                        </h6>
-                                        <div class="pro-rating">
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                        </div>
-                                        <h3 class="pro-price">$ 869.00</h3>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product-item end -->
-                            <!-- product-item start -->
-                            <div class="col-lg-3">
-                                <div class="product-item">
-                                    <div class="product-img">
-                                        <a href="single-product.html">
-                                            <img src="img/product/1.jpg" alt="" />
-                                        </a>
-                                    </div>
-                                    <div class="product-info">
-                                        <h6 class="product-title">
-                                            <a href="single-product.html">Product Name4</a>
-                                        </h6>
-                                        <div class="pro-rating">
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-half"></i></a>
-                                            <a href="#"><i class="zmdi zmdi-star-outline"></i></a>
-                                        </div>
-                                        <h3 class="pro-price">$ 869.00</h3>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- product-item end -->
                         </div>
                     </div>
                 </div>
@@ -434,157 +446,7 @@ $_SESSION['most_recent'] = $_SESSION['recent_product'];
         <!-- End page content -->
 
         <!-- START FOOTER AREA -->
-        <footer id="footer" class="footer-area">
-            <div class="footer-top">
-                <div class="container-fluid">
-                    <div class="plr-185">
-                        <div class="footer-top-inner theme-bg">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 col-sm-4">
-                                    <div class="single-footer footer-about">
-                                        <div class="footer-logo">
-                                            <img src="img/logo/logo.png" alt="">
-                                        </div>
-                                        <div class="footer-brief">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the subas industry's standard dummy text
-                                                ever since the 1500s,</p>
-                                            <p>When an unknown printer took a galley of type and If you are going to use
-                                                a passage of Lorem Ipsum scrambled it to make.</p>
-                                        </div>
-                                        <ul class="footer-social">
-                                            <li>
-                                                <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 hidden-md hidden-sm">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">Shipping</h4>
-                                        <ul class="footer-menu">
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>New
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Discount
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Best Sell
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Popular
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Suppliers</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Special
-                                                        Products</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">my account</h4>
-                                        <ul class="footer-menu">
-                                            <li>
-                                                <a href="my-account.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Account</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Wishlist</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Cart</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Sign
-                                                        In</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Registration</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="checkout.html"><i class="zmdi zmdi-circle"></i><span>Check
-                                                        out</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="order.html"><i class="zmdi zmdi-circle"></i><span>Oder
-                                                        Complete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">Newsletter</h4>
-                                        <div class="footer-message">
-                                            <form action="#">
-                                                <p>Enter your email address to know more about our latest offers</p>
-                                                <input type="text" name="email" placeholder="Your email here...">
-                                                <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">Subscribe</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="footer-bottom black-bg">
-                <div class="container-fluid">
-                    <div class="plr-185">
-                        <div class="copyright">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="copyright-text">
-                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio" target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <ul class="footer-payment text-right">
-                                        <li>
-                                            <a href="#"><img src="img/payment/1.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/2.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/3.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/4.jpg" alt=""></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include('includes/footer.php'); ?>
         <!-- END FOOTER AREA -->
 
         <!-- START QUICKVIEW PRODUCT -->

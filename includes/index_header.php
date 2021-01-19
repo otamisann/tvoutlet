@@ -12,32 +12,41 @@
                 <div class="col-sm-6 col-xs-12">
                     <div class="top-link clearfix">
                         <ul class="link f-right">
-                            <li>
-                                <a href="my-account.html">
-                                    <i class="zmdi zmdi-account"></i>
-                                    My Account
-                                </a>
-                            </li>
-                            <li>
-                                <a href="wishlist.html">
-                                    <i class="zmdi zmdi-favorite"></i>
-                                    Wish List (0)
-                                </a>
-                            </li>
                             <?php if (isset($_SESSION['user_id'])) { ?>
-                            <li>
-                                <a href="logout.php">
-                                    <i class="zmdi zmdi-lock"></i>
-                                    Logout
-                                </a>
-                            </li>
+                                <li>
+                                    <a href="my-account.php">
+                                        <i class="zmdi zmdi-account"></i>
+                                        My Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="wishlist.html">
+                                        <i class="zmdi zmdi-favorite"></i>
+                                        Wish List (0)
+                                    </a>
+                                </li>
+                            <?php } ?>
+
+                            <?php if (isset($_SESSION['user_id'])) { ?>
+                                <li>
+                                    <a href="logout.php">
+                                        <i class="zmdi zmdi-lock"></i>
+                                        Logout
+                                    </a>
+                                </li>
                             <?php } else { ?>
                                 <li>
-                                <a href="login.php">
-                                    <i class="zmdi zmdi-lock"></i>
-                                    Login
-                                </a>
-                            </li>
+                                    <a href="login.php">
+                                        <i class="zmdi zmdi-sign-in"></i>
+                                        Log in
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="register.php">
+                                        <i class="zmdi zmdi-accounts-list-alt"></i>
+                                        Register
+                                    </a>
+                                </li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -114,10 +123,10 @@
                                     <button class="search-toggle">
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
-                                    <form action="#">
+                                    <form action="shop_results.php" method="POST">
                                         <div class="top-search-box">
-                                            <input type="text" placeholder="Search here your product...">
-                                            <button type="submit">
+                                            <input type="text" name="search" placeholder="Search here your product...">
+                                            <button type="submit" name="search_btn">
                                                 <i class="zmdi zmdi-search"></i>
                                             </button>
                                         </div>
@@ -125,98 +134,89 @@
                                 </div>
                             </div>
                             <!-- total-cart -->
-                            <div class="total-cart f-left">
-                                <div class="total-cart-in">
-                                    <div class="cart-toggler">
-                                        <a href="#">
-                                            <span class="cart-quantity">02</span><br>
-                                            <span class="cart-icon">
-                                                <i class="zmdi zmdi-shopping-cart-plus"></i>
-                                            </span>
-                                        </a>
+                            <?php if (isset($_SESSION['user_id'])) { ?>
+                                <div class="total-cart f-left">
+                                    <div class="total-cart-in">
+                                        <div class="cart-toggler">
+                                            <!-- php count -->
+                                            <?php
+                                            $total_cart_price = 0;
+                                            $sql_select_cart = "SELECT * FROM ordertbl WHERE OrderStatus = 1 AND userID = '$_SESSION[user_id]';";
+                                            $res_select_cart = mysqli_query($conn, $sql_select_cart);
+                                            $counting = mysqli_num_rows($res_select_cart);
+                                            ?>
+                                            <a href="#">
+                                                <span class="cart-quantity"><?php echo $counting; ?></span><br>
+                                                <span class="cart-icon">
+                                                    <i class="zmdi zmdi-shopping-cart-plus"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div class="top-cart-inner your-cart">
+                                                    <h5 class="text-capitalize">Your Cart</h5>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="total-cart-pro">
+                                                    <!-- php -->
+                                                    <?php
+                                                    while ($row4 = mysqli_fetch_assoc($res_select_cart)) :
+                                                        $tvname = $row4['TVName'];
+                                                        $tvmodel = $row4['TVModel'];
+                                                        $brand = $row4['Brand'];
+                                                        $price = $row4['Price'];
+                                                        $image = $row4['TVImage'];
+                                                        // $total_cart_price = 0;
+                                                        $total_cart_price = $total_cart_price + $price;
+                                                    ?>
+                                                        <!-- single-cart -->
+                                                        <div class="single-cart clearfix">
+                                                            <div class="cart-img f-left">
+                                                                <a href="#">
+                                                                    <img src="AdminLTE/images/<?php echo $image; ?>" style="object-fit: contain;width: 100px;height: 111px;" alt="Cart Product" />
+                                                                </a>
+                                                            </div>
+                                                            <div class="cart-info f-left">
+                                                                <h6 class="text-capitalize text-truncate" style="width: 180px;">
+                                                                    <a href="#"><?php echo $tvname; ?></a>
+                                                                </h6>
+                                                                <p>
+                                                                    <span>Brand <strong>:</strong></span><?php echo $brand; ?>
+                                                                </p>
+                                                                <p>
+                                                                    <span>Model <strong>:</strong></span><?php echo $tvmodel; ?>
+                                                                </p>
+                                                                <p>
+                                                                    <span>Price <strong>:</strong></span>₱<?php echo number_format($price); ?>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    <?php endwhile; ?>
+                                                    <!-- end single product -->
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="top-cart-inner subtotal">
+                                                    <h4 class="text-uppercase g-font-2">
+                                                        Total =
+                                                        <span>₱<?php echo number_format($total_cart_price, 2) ?></span>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="top-cart-inner view-cart">
+                                                    <h4 class="text-uppercase">
+                                                        <a href="cart.php">View cart</a>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul>
-                                        <li>
-                                            <div class="top-cart-inner your-cart">
-                                                <h5 class="text-capitalize">Your Cart</h5>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="total-cart-pro">
-                                                <!-- single-cart -->
-                                                <div class="single-cart clearfix">
-                                                    <div class="cart-img f-left">
-                                                        <a href="#">
-                                                            <img src="img/cart/1.jpg" alt="Cart Product" />
-                                                        </a>
-                                                        <div class="del-icon">
-                                                            <a href="#">
-                                                                <i class="zmdi zmdi-close"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-info f-left">
-                                                        <h6 class="text-capitalize">
-                                                            <a href="#">Dummy Product Name</a>
-                                                        </h6>
-                                                        <p>
-                                                            <span>Brand <strong>:</strong></span>Brand Name
-                                                        </p>
-                                                        <p>
-                                                            <span>Model <strong>:</strong></span>Grand s2
-                                                        </p>
-                                                        <p>
-                                                            <span>Color <strong>:</strong></span>Black, White
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <!-- single-cart -->
-                                                <div class="single-cart clearfix">
-                                                    <div class="cart-img f-left">
-                                                        <a href="#">
-                                                            <img src="img/cart/1.jpg" alt="Cart Product" />
-                                                        </a>
-                                                        <div class="del-icon">
-                                                            <a href="#">
-                                                                <i class="zmdi zmdi-close"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="cart-info f-left">
-                                                        <h6 class="text-capitalize">
-                                                            <a href="#">Dummy Product Name</a>
-                                                        </h6>
-                                                        <p>
-                                                            <span>Brand <strong>:</strong></span>Brand Name
-                                                        </p>
-                                                        <p>
-                                                            <span>Model <strong>:</strong></span>Grand s2
-                                                        </p>
-                                                        <p>
-                                                            <span>Color <strong>:</strong></span>Black, White
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="top-cart-inner subtotal">
-                                                <h4 class="text-uppercase g-font-2">
-                                                    Total =
-                                                    <span>$ 500.00</span>
-                                                </h4>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="top-cart-inner view-cart">
-                                                <h4 class="text-uppercase">
-                                                    <a href="cart.html">View cart</a>
-                                                </h4>
-                                            </div>
-                                        </li>
-                                    </ul>
                                 </div>
-                            </div>
+                            <?php }
+                            ?>
                         </div>
                     </div>
                 </div>

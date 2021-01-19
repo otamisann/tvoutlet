@@ -39,6 +39,11 @@ require('includes/connection.php');
     <script src="sweetalert2.all.min.js"></script>
     <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <style>
+        .swal2-popup {
+            font-size: 1.6rem !important;
+        }
+    </style>
 
 </head>
 
@@ -82,32 +87,41 @@ require('includes/connection.php');
                 <div class="slider-content">
                     <div class="row">
                         <div class="active-slider-1 slick-arrow-1 slick-dots-1">
-
-                            <!-- layer-1 end -->
-                            <!-- layer-1 Start -->
-                            <div class="col-md-12 h-75">
-                                <div class="layer-1">
-                                    <div class="slider-img">
-                                        <img src="AdminLTE/images/levant-qledtv-q60t-qa75q60tauxtw-frontblack-229832344.png" alt="" style="object-fit: cover; width: 100%;height: 100%;">
-                                    </div>
-                                    <div class="slider-info gray-bg h-100">
-                                        <div class="slider-info-inner">
-                                            <h1 class="slider-title-1 text-uppercase text-black-1">WaterProof smartphone
-                                            </h1>
-                                            <div class="slider-brief text-black-2">
-                                                <p>There are many variations of passages of Lorem Ipsum available, but
-                                                    the majority have suffered alteration in some form, by injected
-                                                    humour, or randomised words which don't look even slightly
-                                                    believable. If you are going to use a passage of Lorem Ipsum,</p>
+                            <!-- php -->
+                            <?php
+                            $banners = "SELECT * FROM tvspecstbl WHERE IsBanner = 1;";
+                            $res_banners = mysqli_query($conn, $banners);
+                            while ($row_banners = mysqli_fetch_assoc($res_banners)) :
+                                $tvid = $row_banners['TVID'];
+                                $tvname = $row_banners['TVName'];
+                                $overview = $row_banners['TVOverview'];
+                                // image
+                                $sql_image = "SELECT * from tvimagetbl WHERE TVID = $tvid LIMIT 1;";
+                                $result_image = mysqli_query($conn, $sql_image);
+                                $row_image = mysqli_fetch_assoc($result_image);
+                            ?>
+                                <!-- layer-1 end -->
+                                <!-- layer-1 Start -->
+                                <div class="col-md-12 h-75">
+                                    <div class="layer-1">
+                                        <div class="slider-img">
+                                            <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="object-fit: cover; width: 600px;height: 500px;">
+                                        </div>
+                                        <div class="slider-info gray-bg h-100">
+                                            <div class="slider-info-inner">
+                                                <h1 class="slider-title-1 text-uppercase text-black-1"><?php echo $tvname; ?></h1>
+                                                <div class="slider-brief text-black-2">
+                                                    <p><?php echo $overview; ?></p>
+                                                </div>
+                                                <a href="single-product.php?TVID=<?php echo $tvid; ?>" class="button medium">
+                                                    <span class="text-uppercase">Buy now</span>
+                                                </a>
                                             </div>
-                                            <a href="#" class="button medium">
-                                                <span class="text-uppercase">Buy now</span>
-                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- layer-1 end -->
+                                <!-- layer-1 end -->
+                            <?php endwhile; ?>
                         </div>
                     </div>
                 </div>
@@ -150,9 +164,9 @@ require('includes/connection.php');
                                 <!-- product-item start -->
                                 <div class="col-xs-12">
                                     <div class="product-item product-item-2">
-                                        <div class="product-img">
+                                        <div class="product-img" style="background-color: white;border-radius: 10px 10px 0 0;">
                                             <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                                <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="width: 100%;height: 250px;" />
+                                                <img src="AdminLTE/images/<?php echo $row_image['TVImage']; ?>" alt="" style="object-fit: scale-down;width: 100%;height: 250px;" />
                                             </a>
                                         </div>
                                         <div class="product-info">
@@ -277,9 +291,9 @@ require('includes/connection.php');
                                         <!-- product-item start -->
                                         <div class="col-md-3 col-sm-4 col-xs-12">
                                             <div class="product-item product-item-2">
-                                                <div class="product-img">
+                                                <div class="product-img" style="background-color: white;border-radius: 10px 10px 0 0;">
                                                     <a href="single-product.php?TVID=<?php echo $TVID; ?>">
-                                                        <img src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="" style="width: 100%;height: 250px;" />
+                                                        <img src="AdminLTE/images/<?php echo $row_image2['TVImage']; ?>" alt="" style="object-fit: scale-down;width: 100%;height: 250px;" />
                                                     </a>
                                                 </div>
                                                 <div class="product-info">
@@ -500,157 +514,7 @@ require('includes/connection.php');
         <!-- END PAGE CONTENT -->
 
         <!-- START FOOTER AREA -->
-        <footer id="footer" class="footer-area">
-            <div class="footer-top">
-                <div class="container-fluid">
-                    <div class="plr-185">
-                        <div class="footer-top-inner theme-bg">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-5 col-sm-4">
-                                    <div class="single-footer footer-about">
-                                        <div class="footer-logo">
-                                            <img src="img/logo/logo.png" alt="">
-                                        </div>
-                                        <div class="footer-brief">
-                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                industry. Lorem Ipsum has been the subas industry's standard dummy text
-                                                ever since the 1500s,</p>
-                                            <p>When an unknown printer took a galley of type and If you are going to use
-                                                a passage of Lorem Ipsum scrambled it to make.</p>
-                                        </div>
-                                        <ul class="footer-social">
-                                            <li>
-                                                <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
-                                            </li>
-                                            <li>
-                                                <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 hidden-md hidden-sm">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">Shipping</h4>
-                                        <ul class="footer-menu">
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>New
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Discount
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Best Sell
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Popular
-                                                        Products</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Suppliers</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Special
-                                                        Products</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">my account</h4>
-                                        <ul class="footer-menu">
-                                            <li>
-                                                <a href="my-account.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Account</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="wishlist.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Wishlist</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="cart.html"><i class="zmdi zmdi-circle"></i><span>My
-                                                        Cart</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Sign
-                                                        In</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Registration</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="checkout.html"><i class="zmdi zmdi-circle"></i><span>Check
-                                                        out</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="order.html"><i class="zmdi zmdi-circle"></i><span>Oder
-                                                        Complete</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <div class="single-footer">
-                                        <h4 class="footer-title border-left">Newsletter</h4>
-                                        <div class="footer-message">
-                                            <form action="#">
-                                                <p>Enter your email address to know more about our latest offers</p>
-                                                <input type="text" name="email" placeholder="Your email here...">
-                                                <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">Subscribe</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="footer-bottom black-bg">
-                <div class="container-fluid">
-                    <div class="plr-185">
-                        <div class="copyright">
-                            <div class="row">
-                                <div class="col-sm-6 col-xs-12">
-                                    <div class="copyright-text">
-                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio" target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12">
-                                    <ul class="footer-payment text-right">
-                                        <li>
-                                            <a href="#"><img src="img/payment/1.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/2.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/3.jpg" alt=""></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><img src="img/payment/4.jpg" alt=""></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <?php include('includes/footer.php'); ?>
         <!-- END FOOTER AREA -->
 
     </div>

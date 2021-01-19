@@ -128,7 +128,7 @@ $row = mysqli_fetch_assoc($result);
                 </li>
                 <li class="nav-header">Maintenance</li>
                 <li class="nav-item">
-                    <a href="banners.html" class="nav-link">
+                    <a href="banners.php" class="nav-link <?php echo ($page == "banners" ? "active" : "") ?>">
                         <i class="nav-icon fas fa-sliders-h"></i>
                         <p>
                             Home Banner/Slider
