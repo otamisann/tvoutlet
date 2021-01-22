@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subash || Checkout</title>
+    <title>tvOutlet || Cart</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,6 +31,21 @@
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        input[type="number"],
+        input[type="date"],
+        input[type="email"] {
+            background: #fff none repeat;
+            border: 1px solid transparent;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            color: #999999;
+            font-size: 13px;
+            height: 40px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -144,8 +159,8 @@
                             <div class="breadcrumbs-inner">
                                 <h1 class="breadcrumbs-title">Checkout</h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="cart.php">Cart</a></li>
                                     <li>Checkout</li>
                                 </ul>
                             </div>
@@ -166,7 +181,7 @@
                         <div class="col-md-2">
                             <ul class="cart-tab">
                                 <li>
-                                    <a class="active" href="cart.html">
+                                    <a class="active" href="cart.php">
                                         <span>01</span>
                                         Shopping cart
                                     </a>
@@ -196,41 +211,43 @@
                                                 <!-- billing details -->
                                                 <div class="col-md-6">
                                                     <div class="billing-details pr-10">
-                                                        <h6 class="widget-title border-left mb-20">delivery address</h6>
+                                                        <h6 class="widget-title border-left mb-20">Delivery address</h6>
                                                         <input style="font-weight: 800;" type="text"
                                                             placeholder="Your Name Here..."
                                                             value="Kim Torrina - 09213382422" disabled="">
-                                                        <input type="text" placeholder="Postal Code">
-                                                        <select class="custom-select">
-                                                            <option value="defalt">Region</option>
-                                                            <option value="c-1">Metro Manila</option>
-                                                            <option value="c-2">Bulacan</option>
-                                                            <option value="c-3">Rizal</option>
-                                                            <option value="c-4">Cavite</option>
-                                                        </select>
-                                                        <select class="custom-select">
-                                                            <option value="defalt">Province</option>
-                                                            <option value="c-1">Caloocan</option>
-                                                            <option value="c-2">Manila</option>
-                                                            <option value="c-3">Makati</option>
-                                                            <option value="c-4">Taguig</option>
-                                                        </select>
-                                                        <select class="custom-select">
-                                                            <option value="defalt">City</option>
-                                                            <option value="c-1">Caloocan</option>
-                                                            <option value="c-2">Manila</option>
-                                                            <option value="c-3">Makati</option>
-                                                            <option value="c-4">Taguig</option>
-                                                        </select>
-                                                        <select class="custom-select">
-                                                            <option value="defalt">Barangay</option>
-                                                            <option value="c-1">Barangay 12</option>
-                                                            <option value="c-2">Barangay 13</option>
-                                                            <option value="c-3">Barangay 14</option>
-                                                            <option value="c-4">Barangay 15</option>
-                                                        </select>
-                                                        <textarea class="custom-textarea"
-                                                            placeholder="Home number, Building, Street etc..."></textarea>
+                                                        <!-- inputs -->
+                                                        <label for="">Name</label>
+                                                        <input type="text" placeholder="Name" value="Kim C. Torrina"
+                                                            required>
+                                                        <!--  -->
+                                                        <label for="">Phone Number</label>
+                                                        <input type="text" placeholder="Phone Number"
+                                                            value="09213382422" required>
+                                                        <!--  -->
+                                                        <label for="">Address Line 1</label>
+                                                        <input type="text" placeholder="Address Line 1"
+                                                            value="542 Road 1 Street." required>
+                                                        <!--  -->
+                                                        <label for="">Address Line 2 (Optional)</label>
+                                                        <input type="text" placeholder="Address Line 2 (Optional)">
+                                                        <!--  -->
+                                                        <label for="">City</label>
+                                                        <input type="text" placeholder="City" value="Manila" required>
+                                                        <!--  -->
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="col-md-6">
+                                                                    <!--  -->
+                                                                    <label for="">Barangay</label>
+                                                                    <input type="text" placeholder="Barangay" value="180" required>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <!--  -->
+                                                                    <label for="">Postal Code</label>
+                                                                    <input type="number" placeholder="Postal Code" value="1013" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -243,11 +260,15 @@
                                                                 <td class="td-title-2">$21,990.00</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="td-title-1">Cart Subtotal</td>
+                                                                <td class="td-title-1">65" OLED SAMSUNg TV x 2</td>
+                                                                <td class="td-title-2">$21,990.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="order-total">Cart Subtotal</td>
                                                                 <td class="td-title-2">$40,000.00</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="td-title-1">Shipping and Handing</td>
+                                                                <td class="order-total">Shipping and Handing</td>
                                                                 <td class="td-title-2">$150.00</td>
                                                             </tr>
                                                             <tr>
@@ -265,10 +286,12 @@
                                                         <h6 class="widget-title border-left mb-20">payment method</h6>
                                                         <div class="new-customers p-30">
                                                             <select class="custom-select">
-                                                                <option selected="readonly">Payment Method</option>
+                                                                <option selected="" disabled value="">Payment Method</option>
                                                                 <option value="c-1">Cash on Delivery</option>
                                                                 <option value="c-2">Credit / Debit Card</option>
                                                             </select>
+                                                            <p class="quote-border pl-30">(Standard Delivery) Received
+                                                                by Jan 8 - 10 </p>
                                                             <div class="row">
                                                                 <div class="col-sm-6">
                                                                     <input type="text" placeholder="Card Number">

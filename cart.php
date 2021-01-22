@@ -12,10 +12,6 @@ require('includes/connection.php');
 <?php include('includes/header.php') ?>
 
 <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
     <!-- Body main wrapper start -->
     <div class="wrapper">
 
@@ -126,7 +122,7 @@ require('includes/connection.php');
                                                         <!-- php -->
                                                         <?php
                                                         $tot_cart = 0;
-                                                        $sql_cart = "SELECT * FROM ordertbl WHERE OrderStatus = 1 and userID = '$_SESSION[user_id]';";
+                                                        $sql_cart = "SELECT * FROM ordertbl WHERE OrderStatus = 1 and UserID = '$_SESSION[user_id]';";
                                                         $res_cart = mysqli_query($conn, $sql_cart);
                                                         while ($row_cart = mysqli_fetch_assoc($res_cart)) :
                                                             $OrderID = $row_cart['OrderID'];
@@ -160,24 +156,36 @@ require('includes/connection.php');
                                                                 </td>
                                                             </tr>
                                                         <?php endwhile; ?>
+                                                        <!--  -->
+                                                        <?php
+                                                        if (mysqli_num_rows($res_cart) == 0) { ?>
+                                                            <tr>
+                                                                <td colspan="5">
+                                                                    <p>Your cart is empty</p>
+                                                                </td>
+                                                            </tr>
+                                                        <?php } ?>
+                                                        <!--  -->
                                                         <tr>
                                                             <td colspan="3">
-
                                                             </td>
                                                             <td colspan="2" class="product-price" style="background-color: orange;color: white;">
                                                                 Order Total: ₱<?php echo number_format($tot_cart, 2) ?>
                                                             </td>
                                                         </tr>
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <a href="checkout.html" class="button extra-small mt-20 f-right" tabindex="-1">
-                                                <span class="text-uppercase">Proceed to checkout</span>
-                                            </a>
+                                            <?php if ($tot_cart > 0) { ?>
+                                                <a href="checkout.php" class="button extra-small mt-20 f-right" tabindex="-1">
+                                                    <span class="text-uppercase">Proceed to checkout</span>
+                                                </a>
+                                            <?php } ?>
+
                                             <a href="shop.php" class="button extra-small button-black mt-20 f-right" tabindex="-1">
                                                 <span class="text-uppercase">Continue shopping</span>
                                             </a>
-
                                         </form>
                                     </div>
                                 </div>

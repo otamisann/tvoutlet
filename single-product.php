@@ -161,12 +161,12 @@ $_SESSION['order_item']  = $_GET['TVID'];
                                                 <!-- buy noow and add to cart btn -->
                                                 <?php
                                                 if (isset($_SESSION['user_id'])) { ?>
-                                                    <a href="add_to_cart.php" class="button extra-small button-black" tabindex="-1">
+                                                    <a href="add_to_cart.php" class="button extra-small" tabindex="-1">
                                                         <span class="text-uppercase">Add to cart</span>
                                                     </a>
-                                                    <a href="#" class="button extra-small" tabindex="-1">
+                                                    <!-- <a href="#" class="button extra-small" tabindex="-1">
                                                         <span class="text-uppercase">Buy now</span>
-                                                    </a>
+                                                    </a> -->
                                                 <?php } else { ?>
                                                     <!-- Sign in to buy -->
                                                     <a href="login.php" class="button extra-small " tabindex="-1">

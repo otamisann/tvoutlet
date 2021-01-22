@@ -145,7 +145,7 @@
                                             $res_select_cart = mysqli_query($conn, $sql_select_cart);
                                             $counting = mysqli_num_rows($res_select_cart);
                                             ?>
-                                            <a href="#">
+                                            <a href="cart.php">
                                                 <span class="cart-quantity"><?php echo $counting; ?></span><br>
                                                 <span class="cart-icon">
                                                     <i class="zmdi zmdi-shopping-cart-plus"></i>

@@ -1,139 +1,22 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+}
+require('includes/connection.php');
+// print_r($_SESSION);
+?>
 <!doctype html>
 <html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subash || Checksdfsdfout</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
-
-    <!-- All CSS Files -->
-    <!-- Bootstrap fremwork main css -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- Nivo-slider css -->
-    <link rel="stylesheet" href="lib/css/nivo-slider.css">
-    <!-- This core.css file contents all plugings css file. -->
-    <link rel="stylesheet" href="css/core.css">
-    <!-- Theme shortcodes/elements style -->
-    <link rel="stylesheet" href="css/shortcode/shortcodes.css">
-    <!-- Theme main style -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Responsive css -->
-    <link rel="stylesheet" href="css/responsive.css">
-    <!-- Template color css -->
-    <link href="css/color/color-core.css" data-style="styles" rel="stylesheet">
-    <!-- User style -->
-    <link rel="stylesheet" href="css/custom.css">
-
-    <!-- Modernizr JS -->
-    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
-</head>
+<title>tvOutlet || Order Complete</title>
+<?php include('includes/header.php') ?>
 
 <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
     <!-- Body main wrapper start -->
     <div class="wrapper">
-
         <!-- START HEADER AREA -->
-        <header class="header-area header-wrapper">
-            <!-- header-top-bar -->
-            <div class="header-top-bar plr-185">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6 hidden-xs">
-                            <div class="call-us">
-                                <!-- <p class="mb-0 roboto">(+88) 01234-567890</p> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="top-link clearfix">
-                                <ul class="link f-right">
-                                    <li>
-                                        <a href="my-account.html">
-                                            <i class="zmdi zmdi-account"></i>
-                                            My Account
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <i class="zmdi zmdi-favorite"></i>
-                                            Wish List (0)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">
-                                            <i class="zmdi zmdi-lock"></i>
-                                            Login
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- header-middle-area -->
-            <div id="sticky-header" class="header-middle-area plr-185">
-                <div class="container-fluid">
-                    <div class="full-width-mega-dropdown">
-                        <div class="row">
-                            <!-- logo -->
-                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="img/logo/logo.png" alt="main logo">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- primary-menu -->
-                            <div class="col-md-8 hidden-sm hidden-xs">
-                                <nav id="primary-menu">
-                                    <ul class="main-menu text-center">
-                                        <li><a href="index.html">Home</a>
-                                        </li>
-                                        <li class="mega-parent"><a href="#">Products</a>
-                                            <div class="mega-menu-area mega-menu-area-2 clearfix">
-                                                <div class="mega-menu-link mega-menu-link-2  f-left">
-                                                    <ul class="single-mega-item">
-                                                        <li class="menu-title">TV's</li>
-                                                        <li><a href="#">LED</a></li>
-                                                        <li><a href="#">LCD</a></li>
-                                                        <li><a href="#">Smart TV</a></li>
-                                                        <li><a href="#">Android TV</a></li>
-                                                        <li><a href="#">Premium TV's</a></li>
-                                                    </ul>
-                                                    <ul class="single-mega-item">
-                                                        <li class="menu-title">Brands</li>
-                                                        <li><a href="#">SAMSUNG</a></li>
-                                                        <li><a href="#">TCL</a></li>
-                                                        <li><a href="#">LG</a></li>
-                                                        <li><a href="#">Skyworth</a></li>
-                                                        <li><a href="#">SONY</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </header>
+        <?php include('includes/index_header.php') ?>
         <!-- END HEADER AREA -->
-
 
         <!-- BREADCRUMBS SETCTION START -->
         <div class="breadcrumbs-section plr-200 mb-80">
@@ -144,8 +27,8 @@
                             <div class="breadcrumbs-inner">
                                 <h1 class="breadcrumbs-title">Checkout</h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="cart.html">Cart</a></li>
+                                    <li><a href="index.php">Home</a></li>
+                                    <li><a href="cart.php">Cart</a></li>
                                     <li>Checkout</li>
                                 </ul>
                             </div>
@@ -188,6 +71,13 @@
                         <div class="col-md-10">
                             <!-- Tab panes -->
                             <div class="tab-content">
+                                <!-- php -->
+                                <?php
+                                    $userid = $_SESSION['user_id'];
+                                    $sql_order_com = "SELECT * FROM mainordertbl WHERE Status = 2 AND UserID = $userid;";
+                                    $res_order_com = mysqli_query($conn, $sql_order_com);
+                                    $row_com = mysqli_fetch_assoc($res_order_com);
+                                ?>
                                 <!-- order -->
                                 <div class="tab-pane active" id="order-complete">
                                     <div class="order-complete-content box-shadow">
@@ -198,17 +88,16 @@
                                             <ul class="order-info-list">
                                                 <li>
                                                     <h6>order id</h6>
-                                                    <p>m 2653257</p>
+                                                    <p>ORDER ID: <?php echo $row_com['MainOrderID']; ?></p>
                                                 </li>
                                                 <li>
                                                     <h6>to pay</h6>
-                                                    <p>41,000</p>
+                                                    <p>₱ <?php echo number_format($row_com['TotalPayment'],2); ?></p>
                                                 </li>
                                                 <li>
                                                     <h6>standard delivery</h6>
-                                                    <p>received by jan 8 - 10</p>
+                                                    <p>received by <?php echo $row_com['ShipDate']; ?> (estimated)</p>
                                                 </li>
-
                                             </ul>
                                         </div>
                                         <div class="row">
@@ -217,25 +106,34 @@
                                                 <div class="payment-details p-30">
                                                     <h6 class="widget-title border-left mb-20">our order</h6>
                                                     <table>
+                                                        <?php
+                                                            $idd = $row_com['MainOrderID'];
+                                                            $sql_products_order = "SELECT * FROM ordertbl WHERE MainOrderID = $idd;";
+                                                            $res_products_order = mysqli_query($conn, $sql_products_order);
+                                                                while ($row_products_order = mysqli_fetch_assoc($res_products_order)) :
+                                                                    $tvname = $row_products_order['TVName'];
+                                                                    $Price = $row_products_order['Price'];
+                                                        ?>
                                                         <tr>
-                                                            <td class="td-title-1">65" OLED SAMSUNg TV x 2</td>
-                                                            <td class="td-title-2">$21,990.00</td>
+                                                            <td class="td-title-1"><?php echo $tvname; ?></td>
+                                                            <td class="td-title-2">₱ <?php echo number_format($Price,2); ?></td>
                                                         </tr>
+                                                                <?php endwhile; ?>
                                                         <tr>
                                                             <td class="td-title-1">Cart Subtotal</td>
                                                             <td class="td-title-2">$40,000.00</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="td-title-1">Shipping and Handing</td>
-                                                            <td class="td-title-2">$150.00</td>
+                                                            <td class="td-title-2">₱ 250.00</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="td-title-1">Payment Method</td>
-                                                            <td class="td-title-2">Cash on Delivery</td>
+                                                            <td class="td-title-2"><?php echo $row_com['PaymentMethod']; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="order-total">Order Total</td>
-                                                            <td class="order-total-price">$40,150.00</td>
+                                                            <td class="order-total-price">₱ <?php echo number_format($row_com['TotalPayment'],2); ?></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -246,20 +144,30 @@
                                                     <ul class="bill-address">
                                                         <li>
                                                             <span>Address:</span>
-                                                            542 Road 1 Street. Barangay 180, Tondo,Manila, Metro Manila
+                                                            <?php echo $row_com['ShipAddress']; ?>
                                                         </li>
                                                         <li>
+                                                            <?php
+                                                            $sql_name = "SELECT usertbl.firstname,usertbl.lastname FROM `mainordertbl` JOIN usertbl ON mainordertbl.UserID = usertbl.userID WHERE mainordertbl.MainOrderID = $idd;";
+                                                            $res_name = mysqli_query($conn, $sql_name);
+                                                            $rowww = mysqli_fetch_assoc($res_name);
+                                                            ?>
                                                             <span>Name</span>
-                                                            Kim Torrina
+                                                            <?php echo $rowww['firstname']." ".$rowww['lastname']; ?>
                                                         </li>
                                                         <li>
                                                             <span>phone : </span>
-                                                            09213382422
+                                                            <?php echo $row_com['ContactNum']; ?>
                                                         </li>
                                                     </ul>
                                                 </div>
-
                                             </div>
+                                            <div class="col-md-6">
+                                            <a href="mypurchase.html#ship" class="button extra-small mt-20 f-right" tabindex="-1">
+                                                <span class="text-uppercase">My Purchases</span>
+                                            </a>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

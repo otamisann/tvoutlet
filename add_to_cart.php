@@ -18,7 +18,7 @@ $res_select_image = mysqli_query($conn, $sql_select_image);
 $row_select_image = mysqli_fetch_assoc($res_select_image);
 $TVImage = $row_select_image['TVImage'];
 // insert into order tbl
-$sql_insert_order = "INSERT INTO ordertbl (TVID,userID,TVImage,TVName,TVModel,Brand,Price) VALUES ('$TVID','$userID','$TVImage','$TVName','$TVModel','$Brand','$TVPrice');";
+$sql_insert_order = "INSERT INTO ordertbl (userID,TVID,TVImage,TVName,TVModel,Brand,Price) VALUES ('$userID','$TVID','$TVImage','$TVName','$TVModel','$Brand','$TVPrice');";
 if ($res_insert_order = mysqli_query($conn, $sql_insert_order)) {
     $_SESSION['added_to_cart'] = 1;
     header("location:single-product.php?TVID=$TVID");

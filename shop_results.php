@@ -186,7 +186,12 @@ if (isset($_GET['brand'])) {
                                                 // echo $low . $high;
                                                 $sql_products = "SELECT * FROM tvspecstbl join brandtbl on BrandID = TVBrandID WHERE TVScreensize BETWEEN $low AND $high and tvspecstbl.IsDelete = 0 ORDER BY RAND();";
                                                 $result_products = mysqli_query($conn, $sql_products);
-                                            } else $result_products = false; ?>
+                                            } elseif (isset($_POST['search_btn'])) {
+                                                $search = $_POST['search'];
+                                                $sql_products = "SELECT * FROM tvspecstbl join brandtbl on BrandID = TVBrandID WHERE TVName LIKE '%$search%' OR TVModel LIKE '%$search%' OR TVKeywords LIKE '%$search%';";
+                                                $result_products = mysqli_query($conn, $sql_products);
+                                            }
+                                            else $result_products = false; ?>
 
                                             <?php
                                             if ($result_products) {
