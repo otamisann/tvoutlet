@@ -69,7 +69,7 @@ require('includes/connection.php');
                             <div class="breadcrumbs-inner">
                                 <h1 class="breadcrumbs-title">My Account<?php echo $_SESSION['user_id']; ?></h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="index.php">Home</a></li>
                                     <li>My Account</li>
                                 </ul>
                             </div>

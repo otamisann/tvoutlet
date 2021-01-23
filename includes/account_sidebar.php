@@ -10,11 +10,11 @@
         </ul>
         <li class="color-5"><a>My Purchase</a></li>
         <ul class="ml-30">
-            <a href="mypurchase.html">All / Purchase history</a><br>
-            <a href="mypurchase.html">To Ship</a><br>
-            <a href="mypurchase.html">To Receive</a><br>
-            <a href="mypurchase.html">Completed</a><br>
-            <a href="mypurchase.html">Cancelled</a>
+            <a href="purchases.php">All / Purchase history</a><br>
+            <a href="purchases.php#ship">To Ship</a><br>
+            <a href="purchases.php">To Receive</a><br>
+            <a href="purchases.php">Completed</a><br>
+            <a href="purchases.php">Cancelled</a>
         </ul>
         <li class="color-6"><a href="#">Notifications</a></li>
     </ul>

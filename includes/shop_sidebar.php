@@ -1,9 +1,13 @@
 <!-- widget-search -->
 <aside class="widget-search mb-30">
-    <form action="#">
-        <input type="text" placeholder="Search here...">
-        <button type="submit"><i class="zmdi zmdi-search"></i></button>
+
+    <form action="shop_results.php" method="POST">
+        <input type="text" name="search" placeholder="Search here your product...">
+        <button type="submit" name="search_btn"><i class="zmdi zmdi-search"></i></button>
     </form>
+
+    
+
 </aside>
 <!-- widget-categories -->
 <aside class="widget operating-system box-shadow mb-30">

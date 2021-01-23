@@ -94,7 +94,6 @@
                                     <?php
                                     if (isset($_POST['subscribe'])) {
                                         $emailaddress = $_POST['email'];
-
                                         $sql_check_email = "SELECT * FROM emaillisttbl WHERE emailaddress = '$emailaddress';";
                                         $res_sql_check = mysqli_query($conn, $sql_check_email);
                                         if (mysqli_num_rows($res_sql_check) > 0) { ?>

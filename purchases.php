@@ -1,16 +1,19 @@
+<?php
+session_start();
+require('includes/connection.php');
+// print_r($_SESSION);
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Subash || My Purchase</title>
+    <title>tvOutlet || Purchases</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/icon/favicon.png">
-
+    <link rel="shortcut icon" type="image/x-icon" href="AdminLTE/tvOutletIcon.png">
     <!-- All CSS Files -->
     <!-- Bootstrap fremwork main css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -28,225 +31,30 @@
     <link href="css/color/color-core.css" data-style="styles" rel="stylesheet">
     <!-- User style -->
     <link rel="stylesheet" href="css/custom.css">
-
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        input[type="number"],
+        input[type="date"],
+        input[type="email"] {
+            background: #fff none repeat;
+            border: 1px solid transparent;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+            color: #999999;
+            font-size: 13px;
+            height: 40px;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-
     <!-- Body main wrapper start -->
     <div class="wrapper">
-
         <!-- START HEADER AREA -->
-        <header class="header-area header-wrapper">
-            <!-- header-top-bar -->
-            <div class="header-top-bar plr-185">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-6 hidden-xs">
-                            <div class="call-us">
-                                <!-- <p class="mb-0 roboto">(+88) 01234-567890</p> -->
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-xs-12">
-                            <div class="top-link clearfix">
-                                <ul class="link f-right">
-                                    <li>
-                                        <a href="my-account.html">
-                                            <i class="zmdi zmdi-account"></i>
-                                            My Account
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="wishlist.html">
-                                            <i class="zmdi zmdi-favorite"></i>
-                                            Wish List (0)
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="login.html">
-                                            <i class="zmdi zmdi-lock"></i>
-                                            Login
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- header-middle-area -->
-            <div id="sticky-header" class="header-middle-area plr-185">
-                <div class="container-fluid">
-                    <div class="full-width-mega-dropdown">
-                        <div class="row">
-                            <!-- logo -->
-                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="logo">
-                                    <a href="index.html">
-                                        <img src="img/logo/logo.png" alt="main logo">
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- primary-menu -->
-                            <div class="col-md-8 hidden-sm hidden-xs">
-                                <nav id="primary-menu">
-                                    <ul class="main-menu text-center">
-                                        <li><a href="index-2.html">Home</a>
-                                        </li>
-                                        <li class="mega-parent"><a href="#">Products</a>
-                                            <div class="mega-menu-area mega-menu-area-2 clearfix">
-                                                <div class="mega-menu-link mega-menu-link-2  f-left">
-                                                    <ul class="single-mega-item">
-                                                        <li class="menu-title">TV's</li>
-                                                        <li><a href="#">LED</a></li>
-                                                        <li><a href="#">LCD</a></li>
-                                                        <li><a href="#">Smart TV</a></li>
-                                                        <li><a href="#">Android TV</a></li>
-                                                        <li><a href="#">Premium TV's</a></li>
-                                                    </ul>
-                                                    <ul class="single-mega-item">
-                                                        <li class="menu-title">Brands</li>
-                                                        <li><a href="#">SAMSUNG</a></li>
-                                                        <li><a href="#">TCL</a></li>
-                                                        <li><a href="#">LG</a></li>
-                                                        <li><a href="#">Skyworth</a></li>
-                                                        <li><a href="#">SONY</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li><a href="shop.html">Shop</a></li>
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li>
-                                            <a href="contact.html">Contact</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!-- header-search & total-cart -->
-                            <div class="col-md-2 col-sm-6 col-xs-12">
-                                <div class="search-top-cart  f-right">
-                                    <!-- header-search -->
-                                    <div class="header-search f-left">
-                                        <div class="header-search-inner">
-                                            <button class="search-toggle">
-                                                <i class="zmdi zmdi-search"></i>
-                                            </button>
-                                            <form action="#">
-                                                <div class="top-search-box">
-                                                    <input type="text" placeholder="Search here your product...">
-                                                    <button type="submit">
-                                                        <i class="zmdi zmdi-search"></i>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- total-cart -->
-                                    <div class="total-cart f-left">
-                                        <div class="total-cart-in">
-                                            <div class="cart-toggler">
-                                                <a href="#">
-                                                    <span class="cart-quantity">02</span><br>
-                                                    <span class="cart-icon">
-                                                        <i class="zmdi zmdi-shopping-cart-plus"></i>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                            <ul>
-                                                <li>
-                                                    <div class="top-cart-inner your-cart">
-                                                        <h5 class="text-capitalize">Your Cart</h5>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="total-cart-pro">
-                                                        <!-- single-cart -->
-                                                        <div class="single-cart clearfix">
-                                                            <div class="cart-img f-left">
-                                                                <a href="#">
-                                                                    <img src="img/cart/1.jpg" alt="Cart Product" />
-                                                                </a>
-                                                                <div class="del-icon">
-                                                                    <a href="#">
-                                                                        <i class="zmdi zmdi-close"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="cart-info f-left">
-                                                                <h6 class="text-capitalize">
-                                                                    <a href="#">Dummy Product Name</a>
-                                                                </h6>
-                                                                <p>
-                                                                    <span>Brand <strong>:</strong></span>Brand Name
-                                                                </p>
-                                                                <p>
-                                                                    <span>Model <strong>:</strong></span>Grand s2
-                                                                </p>
-                                                                <p>
-                                                                    <span>Color <strong>:</strong></span>Black, White
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <!-- single-cart -->
-                                                        <div class="single-cart clearfix">
-                                                            <div class="cart-img f-left">
-                                                                <a href="#">
-                                                                    <img src="img/cart/1.jpg" alt="Cart Product" />
-                                                                </a>
-                                                                <div class="del-icon">
-                                                                    <a href="#">
-                                                                        <i class="zmdi zmdi-close"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <div class="cart-info f-left">
-                                                                <h6 class="text-capitalize">
-                                                                    <a href="#">Dummy Product Name</a>
-                                                                </h6>
-                                                                <p>
-                                                                    <span>Brand <strong>:</strong></span>Brand Name
-                                                                </p>
-                                                                <p>
-                                                                    <span>Model <strong>:</strong></span>Grand s2
-                                                                </p>
-                                                                <p>
-                                                                    <span>Color <strong>:</strong></span>Black, White
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="top-cart-inner subtotal">
-                                                        <h4 class="text-uppercase g-font-2">
-                                                            Total =
-                                                            <span>$ 500.00</span>
-                                                        </h4>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <div class="top-cart-inner view-cart">
-                                                        <h4 class="text-uppercase">
-                                                            <a href="cart.html">View cart</a>
-                                                        </h4>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <?php include('includes/index_header.php') ?>
         <!-- END HEADER AREA -->
 
         <!-- BREADCRUMBS SETCTION START -->
@@ -256,9 +64,9 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">My Account</h1>
+                                <h1 class="breadcrumbs-title">My Purchases</h1>
                                 <ul class="breadcrumb-list">
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="index.php">Home</a></li>
                                     <li>My Account</li>
                                 </ul>
                             </div>
@@ -276,31 +84,9 @@
             <div class="shop-section mb-80">
                 <div class="container">
                     <div class="row">
-
                         <div class="col-md-3">
-                            <aside class="widget widget-color box-shadow mb-30">
-                                <h6 class="widget-title border-left mb-20">My account</h6>
-                                <ul>
-                                    <li class="color-4"><a>My Profile</a></li>
-                                    <ul class="ml-30">
-                                        <a href="myaccount.html">Profile</a><br>
-                                        <a href="address.html">Address</a><br>
-                                        <a href="cards.html">Cards</a><br>
-                                        <a href="password.html">Password</a><br>
-                                    </ul>
-                                    <li class="color-5"><a>My Purchase</a></li>
-                                    <ul class="ml-30">
-                                        <a href="mypurchase.html">All / Purchase history</a><br>
-                                        <a href="#ship">To Ship</a><br>
-                                        <a href="#">To Receive</a><br>
-                                        <a href="#">Completed</a><br>
-                                        <a href="#">Cancelled</a>
-                                    </ul>
-                                    <li class="color-6"><a href="#">Notifications</a></li>
-                                </ul>
-                            </aside>
+                            <?php include('includes/account_sidebar.php') ?>
                         </div>
-
                         <!-- account side -->
                         <div class="col-md-9">
                             <div>
@@ -310,173 +96,98 @@
                                         <a href="#all" aria-controls="all" role="tab" data-toggle="tab">All Purchase</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#ship" id="ship" aria-controls="ship" role="tab" data-toggle="tab">To Ship</a>
+                                        <a href="#ship" aria-controls="ship" role="tab" data-toggle="tab">To Ship</a>
                                     </li>
                                     <li role="presentation">
                                         <a href="#receive" aria-controls="receive" role="tab" data-toggle="tab">To
                                             Receive</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#completed" aria-controls="completed" role="tab"
-                                            data-toggle="tab">Completed</a>
+                                        <a href="#completed" aria-controls="completed" role="tab" data-toggle="tab">Completed</a>
                                     </li>
                                     <li role="presentation">
-                                        <a href="#cancelled" aria-controls="cancelled" role="tab"
-                                            data-toggle="tab">Cancelled</a>
+                                        <a href="#cancelled" aria-controls="cancelled" role="tab" data-toggle="tab">Cancelled</a>
                                     </li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="all">
                                         <div class="featured-product-section pt-30 pb-55">
-                                            <div class="col-md-12">
+                                        <div class="col-md-12">
                                                 <div class="row">
+                                                <!-- php ship -->
+                                                <?php
+                                                $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND OrderStatus = 2 OR OrderStatus = 3 OR OrderStatus = 4 OR OrderStatus = 5;";
+                                                $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
 
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
+                                                ?>
+                                                <div class="col-md-3">
                                                         <div class="product-item product-item-2">
-                                                            <div class="product-img">
+                                                            <div class="product-img box-shadow">
                                                                 <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
+                                                                    <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
                                                                 </a>
                                                             </div>
-                                                            <div class="product-info">
+                                                            <div class="product-info" style="border: 1px solid #666666;">
                                                                 <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
+                                                                    <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
                                                                 </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
+                                                                <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'],2); ?></h3>
+                                                                <h5 class="mt-20" style="color: #FF7F00"><?php if ($row_ship['OrderStatus'] = 2){echo 'To Ship';} elseif ($row_ship['OrderStatus'] = 3){echo 'To Receive';} elseif ($row_ship['OrderStatus'] = 4){echo 'Shipped';} elseif ($row_ship['OrderStatus'] = 5){echo 'Cancelled';} ?></h5>
                                                             </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
                                                         </div>
                                                     </div>
-                                                    <!-- product-item end -->
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!-- product-item end -->
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!-- product-item end -->
+                                                <?php endwhile; ?>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
+                                    <!-- SHIP -->
                                     <div role="tabpanel" class="tab-pane" id="ship">
                                         <div class="featured-product-section pt-30 pb-55">
                                             <div class="col-md-12">
                                                 <div class="row">
+                                                <!-- php ship -->
+                                                <?php
+                                                $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND mainordertbl.Status = 2;";
+                                                $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
 
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
+                                                ?>
+                                                <div class="col-md-3">
                                                         <div class="product-item product-item-2">
-                                                            <div class="product-img">
+                                                            <div class="product-img box-shadow">
                                                                 <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
+                                                                    <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
                                                                 </a>
                                                             </div>
-                                                            <div class="product-info">
+                                                            <div class="product-info" style="border: 1px solid #666666;">
                                                                 <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
+                                                                    <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
                                                                 </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
+                                                                <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'],2); ?></h3>
                                                             </div>
-                                                            <ul class="action-button">
+                                                            <ul class="action-button"  style="border: 1px solid #666666;">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                            <ul class="action-button"  style="border: 1px solid #666666;">
+                                                                <li>
+                                                                    <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="order_receipt.php?mainorderid=<?php echo $row_ship['MainOrderID']; ?>" target="_blank" title="View receipt"><i class="zmdi zmdi-receipt"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <!-- product-item end -->
+                                                <?php endwhile; ?>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="receive">
@@ -501,17 +212,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -534,17 +241,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -567,17 +270,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -611,17 +310,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -644,17 +339,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -687,17 +378,13 @@
                                                             </div>
                                                             <ul class="action-button">
                                                                 <li>
-                                                                    <a href="#" data-toggle="modal"
-                                                                        data-target="#productModal" title="Quickview"><i
-                                                                            class="zmdi zmdi-zoom-in"></i></a>
+                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i
-                                                                            class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
                                                                 </li>
                                                                 <li>
-                                                                    <a href="#" title="Order Details"><i
-                                                                            class="zmdi zmdi-collection-text"></i></a>
+                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -741,16 +428,13 @@
                                         </div>
                                         <ul class="footer-social">
                                             <li>
-                                                <a class="facebook" href="" title="Facebook"><i
-                                                        class="zmdi zmdi-facebook"></i></a>
+                                                <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
                                             </li>
                                             <li>
-                                                <a class="google-plus" href="" title="Google Plus"><i
-                                                        class="zmdi zmdi-google-plus"></i></a>
+                                                <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
                                             </li>
                                             <li>
-                                                <a class="twitter" href="" title="Twitter"><i
-                                                        class="zmdi zmdi-twitter"></i></a>
+                                                <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
                                             </li>
                                             <li>
                                                 <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
@@ -779,8 +463,7 @@
                                                         Products</span></a>
                                             </li>
                                             <li>
-                                                <a href="#"><i
-                                                        class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
+                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
                                             </li>
                                             <li>
                                                 <a href="#"><i class="zmdi zmdi-circle"></i><span>Suppliers</span></a>
@@ -813,8 +496,7 @@
                                                         In</span></a>
                                             </li>
                                             <li>
-                                                <a href="login.html"><i
-                                                        class="zmdi zmdi-circle"></i><span>Registration</span></a>
+                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Registration</span></a>
                                             </li>
                                             <li>
                                                 <a href="checkout.html"><i class="zmdi zmdi-circle"></i><span>Check
@@ -834,8 +516,7 @@
                                             <form action="#">
                                                 <p>Enter your email address to know more about our latest offers</p>
                                                 <input type="text" name="email" placeholder="Your email here...">
-                                                <button class="submit-btn-1 mt-20 btn-hover-1"
-                                                    type="submit">Subscribe</button>
+                                                <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">Subscribe</button>
                                             </form>
                                         </div>
                                     </div>
@@ -853,8 +534,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="copyright-text">
-                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio"
-                                                target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
+                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio" target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">
@@ -888,8 +568,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                    aria-hidden="true">&times;</span></button>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                         <div class="modal-body">
                             <div class="modal-product clearfix">

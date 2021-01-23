@@ -19,24 +19,7 @@ require('includes/connection.php');
         <!-- END HEADER AREA -->
 
         <!-- BREADCRUMBS SETCTION START -->
-        <div class="breadcrumbs-section plr-200 mb-80">
-            <div class="breadcrumbs overlay-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Checkout</h1>
-                                <ul class="breadcrumb-list">
-                                    <li><a href="index.php">Home</a></li>
-                                    <li><a href="cart.php">Cart</a></li>
-                                    <li>Checkout</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         <!-- BREADCRUMBS SETCTION END -->
 
         <!-- Start page content -->
@@ -46,35 +29,15 @@ require('includes/connection.php');
             <div class="shop-section mb-80">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-2">
-                            <ul class="cart-tab">
-                                <li>
-                                    <a class="active">
-                                        <span>01</span>
-                                        Shopping cart
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="active">
-                                        <span>02</span>
-                                        Checkout
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="active">
-                                        <span>03</span>
-                                        Order complete
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-10">
+                        
+                        <div class="col-md-12">
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <!-- php -->
                                 <?php
+                                    $mainid = $_GET['mainorderid'];
                                     $userid = $_SESSION['user_id'];
-                                    $sql_order_com = "SELECT * FROM mainordertbl WHERE Status = 2 AND UserID = $userid;";
+                                    $sql_order_com = "SELECT * FROM mainordertbl WHERE Status = 2 || 3 AND UserID = $userid AND MainOrderID = $mainid;";
                                     $res_order_com = mysqli_query($conn, $sql_order_com);
                                     $row_com = mysqli_fetch_assoc($res_order_com);
                                 ?>
@@ -162,12 +125,6 @@ require('includes/connection.php');
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                            <a href="purchases.php" class="button extra-small mt-20 f-right" >
-                                                <span class="text-uppercase">My Purchases</span>
-                                            </a>
-                                            </div>
-
                                         </div>
                                     </div>
                                 </div>
