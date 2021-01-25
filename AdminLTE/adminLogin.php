@@ -20,7 +20,7 @@ if (isset($_POST['loginbtn'])) {
             } else if ($RoleID == 2) {
                 header('Location: packaging.php');
             } else
-                header('Location: delivering.php');
+                header('Location: deliver.php');
         }
     } else {
         session_start();

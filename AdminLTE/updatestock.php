@@ -108,14 +108,14 @@ $page = 'updatestock';
                                                     $tvbrand = $row['BrandName'];
                                                     $tvquantity = $row['TVQuantity'];
                                                 ?>
-                                                    <option value="<?php echo $tvid; ?>"><?php echo $tvbrand; ?> - <?php echo $tvname; ?></option>
+                                                    <option value="<?php echo $tvid; ?>">[<?php echo $tvbrand; ?>] - <?php echo $tvname; ?></option>
                                                 <?php endwhile; ?>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-4">
                                         <div class="form-group">
-                                            <label for="inputName">Quantity</label>
+                                            <label for="inputName">Add Quantity</label>
                                             <input type="number" name="quantity" class="form-control" min="1" required>
                                         </div>
                                     </div>

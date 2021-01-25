@@ -110,14 +110,14 @@ $row = mysqli_fetch_assoc($result);
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-rss"></i>
                         <p>
                             Blog
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-at"></i>
@@ -159,14 +159,14 @@ $row = mysqli_fetch_assoc($result);
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-address-book"></i>
                         <p>
                             Contact Information
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-header">Account Setting</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

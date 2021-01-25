@@ -19,7 +19,7 @@ require('includes/connection.php');
         <!-- END HEADER AREA -->
 
         <!-- BREADCRUMBS SETCTION START -->
-        
+
         <!-- BREADCRUMBS SETCTION END -->
 
         <!-- Start page content -->
@@ -29,17 +29,17 @@ require('includes/connection.php');
             <div class="shop-section mb-80">
                 <div class="container">
                     <div class="row">
-                        
+
                         <div class="col-md-12">
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <!-- php -->
                                 <?php
-                                    $mainid = $_GET['mainorderid'];
-                                    $userid = $_SESSION['user_id'];
-                                    $sql_order_com = "SELECT * FROM mainordertbl WHERE Status = 2 || 3 AND UserID = $userid AND MainOrderID = $mainid;";
-                                    $res_order_com = mysqli_query($conn, $sql_order_com);
-                                    $row_com = mysqli_fetch_assoc($res_order_com);
+                                $mainid = $_GET['mainorderid'];
+                                $userid = $_SESSION['user_id'];
+                                $sql_order_com = "SELECT * FROM mainordertbl WHERE Status = 2 || 3 AND UserID = $userid AND MainOrderID = $mainid;";
+                                $res_order_com = mysqli_query($conn, $sql_order_com);
+                                $row_com = mysqli_fetch_assoc($res_order_com);
                                 ?>
                                 <!-- order -->
                                 <div class="tab-pane active" id="order-complete">
@@ -51,15 +51,19 @@ require('includes/connection.php');
                                             <ul class="order-info-list">
                                                 <li>
                                                     <h6>order id</h6>
-                                                    <p>ORDER ID: <?php echo $row_com['MainOrderID']; ?></p>
+                                                    <p><strong>ORDER ID: TVO<?php echo $row_com['MainOrderID']; ?></strong></p>
                                                 </li>
                                                 <li>
                                                     <h6>to pay</h6>
-                                                    <p>₱ <?php echo number_format($row_com['TotalPayment'],2); ?></p>
+                                                    <p><strong>₱ <?php echo number_format($row_com['TotalPayment'], 2); ?></strong></p>
+                                                </li>
+                                                <li>
+                                                    <h6>Order Date</h6>
+                                                    <p><strong>ordered by <?php echo $row_com['MainOrderDate']; ?></strong></p>
                                                 </li>
                                                 <li>
                                                     <h6>standard delivery</h6>
-                                                    <p>received by <?php echo $row_com['ShipDate']; ?> (estimated)</p>
+                                                    <p><strong>received by <?php echo $row_com['ShipDate']; ?> (estimated)</strong></p>
                                                 </li>
                                             </ul>
                                         </div>
@@ -70,25 +74,25 @@ require('includes/connection.php');
                                                     <h6 class="widget-title border-left mb-20">our order</h6>
                                                     <table>
                                                         <?php
-                                                            $idd = $row_com['MainOrderID'];
-                                                            $sql_products_order = "SELECT * FROM ordertbl WHERE MainOrderID = $idd;";
-                                                            $res_products_order = mysqli_query($conn, $sql_products_order);
-                                                                while ($row_products_order = mysqli_fetch_assoc($res_products_order)) :
-                                                                    $tvname = $row_products_order['TVName'];
-                                                                    $Price = $row_products_order['Price'];
+                                                        $idd = $row_com['MainOrderID'];
+                                                        $sql_products_order = "SELECT * FROM ordertbl WHERE MainOrderID = $idd;";
+                                                        $res_products_order = mysqli_query($conn, $sql_products_order);
+                                                        while ($row_products_order = mysqli_fetch_assoc($res_products_order)) :
+                                                            $tvname = $row_products_order['TVName'];
+                                                            $Price = $row_products_order['Price'];
                                                         ?>
-                                                        <tr>
-                                                            <td class="td-title-1"><?php echo $tvname; ?></td>
-                                                            <td class="td-title-2">₱ <?php echo number_format($Price,2); ?></td>
-                                                        </tr>
-                                                                <?php endwhile; ?>
+                                                            <tr>
+                                                                <td class="td-title-1"><?php echo $tvname; ?></td>
+                                                                <td class="td-title-2">₱<?php echo number_format($Price, 2); ?></td>
+                                                            </tr>
+                                                        <?php endwhile; ?>
                                                         <tr>
                                                             <td class="td-title-1">Cart Subtotal</td>
-                                                            <td class="td-title-2">$40,000.00</td>
+                                                            <td class="td-title-2">₱<?php echo number_format($row_com['TotalPayment']-250, 2); ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="td-title-1">Shipping and Handing</td>
-                                                            <td class="td-title-2">₱ 250.00</td>
+                                                            <td class="td-title-2">₱250.00</td>
                                                         </tr>
                                                         <tr>
                                                             <td class="td-title-1">Payment Method</td>
@@ -96,7 +100,7 @@ require('includes/connection.php');
                                                         </tr>
                                                         <tr>
                                                             <td class="order-total">Order Total</td>
-                                                            <td class="order-total-price">₱ <?php echo number_format($row_com['TotalPayment'],2); ?></td>
+                                                            <td class="order-total-price"><strong>₱<?php echo number_format($row_com['TotalPayment'], 2); ?></strong></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -116,7 +120,7 @@ require('includes/connection.php');
                                                             $rowww = mysqli_fetch_assoc($res_name);
                                                             ?>
                                                             <span>Name</span>
-                                                            <?php echo $rowww['firstname']." ".$rowww['lastname']; ?>
+                                                            <?php echo $rowww['firstname'] . " " . $rowww['lastname']; ?>
                                                         </li>
                                                         <li>
                                                             <span>phone : </span>
@@ -160,16 +164,13 @@ require('includes/connection.php');
                                         </div>
                                         <ul class="footer-social">
                                             <li>
-                                                <a class="facebook" href="" title="Facebook"><i
-                                                        class="zmdi zmdi-facebook"></i></a>
+                                                <a class="facebook" href="" title="Facebook"><i class="zmdi zmdi-facebook"></i></a>
                                             </li>
                                             <li>
-                                                <a class="google-plus" href="" title="Google Plus"><i
-                                                        class="zmdi zmdi-google-plus"></i></a>
+                                                <a class="google-plus" href="" title="Google Plus"><i class="zmdi zmdi-google-plus"></i></a>
                                             </li>
                                             <li>
-                                                <a class="twitter" href="" title="Twitter"><i
-                                                        class="zmdi zmdi-twitter"></i></a>
+                                                <a class="twitter" href="" title="Twitter"><i class="zmdi zmdi-twitter"></i></a>
                                             </li>
                                             <li>
                                                 <a class="rss" href="" title="RSS"><i class="zmdi zmdi-rss"></i></a>
@@ -198,8 +199,7 @@ require('includes/connection.php');
                                                         Products</span></a>
                                             </li>
                                             <li>
-                                                <a href="#"><i
-                                                        class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
+                                                <a href="#"><i class="zmdi zmdi-circle"></i><span>Manufactirers</span></a>
                                             </li>
                                             <li>
                                                 <a href="#"><i class="zmdi zmdi-circle"></i><span>Suppliers</span></a>
@@ -232,8 +232,7 @@ require('includes/connection.php');
                                                         In</span></a>
                                             </li>
                                             <li>
-                                                <a href="login.html"><i
-                                                        class="zmdi zmdi-circle"></i><span>Registration</span></a>
+                                                <a href="login.html"><i class="zmdi zmdi-circle"></i><span>Registration</span></a>
                                             </li>
                                             <li>
                                                 <a href="checkout.html"><i class="zmdi zmdi-circle"></i><span>Check
@@ -253,8 +252,7 @@ require('includes/connection.php');
                                             <form action="#">
                                                 <p>Enter your email address to know more about our latest offers</p>
                                                 <input type="text" name="email" placeholder="Your email here...">
-                                                <button class="submit-btn-1 mt-20 btn-hover-1"
-                                                    type="submit">Subscribe</button>
+                                                <button class="submit-btn-1 mt-20 btn-hover-1" type="submit">Subscribe</button>
                                             </form>
                                         </div>
                                     </div>
@@ -272,8 +270,7 @@ require('includes/connection.php');
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="copyright-text">
-                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio"
-                                                target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
+                                        <p>&copy; <a href="https://themeforest.net/user/codecarnival/portfolio" target="_blank">CodeCarnival</a> 2016. All Rights Reserved.</p>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-xs-12">

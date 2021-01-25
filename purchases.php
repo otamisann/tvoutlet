@@ -113,33 +113,43 @@ require('includes/connection.php');
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="all">
                                         <div class="featured-product-section pt-30 pb-55">
-                                        <div class="col-md-12">
+                                            <div class="col-md-12">
                                                 <div class="row">
-                                                <!-- php ship -->
-                                                <?php
-                                                $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND OrderStatus = 2 OR OrderStatus = 3 OR OrderStatus = 4 OR OrderStatus = 5;";
-                                                $res_toShip = mysqli_query($conn, $sql_toShip);
-                                                while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
+                                                    <!-- php all -->
+                                                    <?php
+                                                    $user_ord_id = $_SESSION['user_id'];
+                                                    $sql_toShip = "SELECT * FROM ordertbl WHERE userID = $user_ord_id AND (OrderStatus = 3 or OrderStatus = 4 or OrderStatus = 5);";
+                                                    $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                    while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
 
-                                                ?>
-                                                <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img box-shadow">
-                                                                <a href="single-product.html">
-                                                                    <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info" style="border: 1px solid #666666;">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
-                                                                </h6>
-                                                                <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
-                                                                <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'],2); ?></h3>
-                                                                <h5 class="mt-20" style="color: #FF7F00"><?php if ($row_ship['OrderStatus'] = 2){echo 'To Ship';} elseif ($row_ship['OrderStatus'] = 3){echo 'To Receive';} elseif ($row_ship['OrderStatus'] = 4){echo 'Shipped';} elseif ($row_ship['OrderStatus'] = 5){echo 'Cancelled';} ?></h5>
+                                                    ?>
+                                                        <div class="col-md-3">
+                                                            <div class="product-item product-item-2">
+                                                                <div class="product-img box-shadow">
+                                                                    <a href="single-product.html">
+                                                                        <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-info" style="border: 1px solid #666666;">
+                                                                    <h6 class="product-title">
+                                                                        <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
+                                                                    </h6>
+                                                                    <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                    <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'], 2); ?></h3>
+                                                                    <h5 class="mt-20" style="color: #FF7F00"><?php if ($row_ship['OrderStatus'] == 3) {
+                                                                                                                    echo 'To Ship';
+                                                                                                                } elseif ($row_ship['OrderStatus'] == 4) {
+                                                                                                                    echo 'Shipped/To receive';
+                                                                                                                } elseif ($row_ship['OrderStatus'] == 5) {
+                                                                                                                    echo 'Received';
+                                                                                                                } elseif ($row_ship['OrderStatus'] == 6) {
+                                                                                                                    echo 'Cancelled';
+                                                                                                                } ?></h5>
+
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                <?php endwhile; ?>
+                                                    <?php endwhile; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -149,43 +159,42 @@ require('includes/connection.php');
                                         <div class="featured-product-section pt-30 pb-55">
                                             <div class="col-md-12">
                                                 <div class="row">
-                                                <!-- php ship -->
-                                                <?php
-                                                $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND mainordertbl.Status = 2;";
-                                                $res_toShip = mysqli_query($conn, $sql_toShip);
-                                                while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
-
-                                                ?>
-                                                <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img box-shadow">
-                                                                <a href="single-product.html">
-                                                                    <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
-                                                                </a>
+                                                    <!-- php ship -->
+                                                    <?php
+                                                    $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND mainordertbl.Status = 2;";
+                                                    $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                    while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
+                                                    ?>
+                                                        <div class="col-md-3">
+                                                            <div class="product-item product-item-2">
+                                                                <div class="product-img box-shadow">
+                                                                    <a href="single-product.html">
+                                                                        <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-info" style="border: 1px solid #666666;">
+                                                                    <h6 class="product-title">
+                                                                        <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
+                                                                    </h6>
+                                                                    <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                    <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'], 2); ?></h3>
+                                                                </div>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="order_receipt.php?mainorderid=<?php echo $row_ship['MainOrderID']; ?>" target="_blank" title="View receipt"><i class="zmdi zmdi-receipt"></i></a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <div class="product-info" style="border: 1px solid #666666;">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
-                                                                </h6>
-                                                                <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
-                                                                <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'],2); ?></h3>
-                                                            </div>
-                                                            <ul class="action-button"  style="border: 1px solid #666666;">
-                                                                <li>
-                                                                    <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                            <ul class="action-button"  style="border: 1px solid #666666;">
-                                                                <li>
-                                                                    <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="order_receipt.php?mainorderid=<?php echo $row_ship['MainOrderID']; ?>" target="_blank" title="View receipt"><i class="zmdi zmdi-receipt"></i></a>
-                                                                </li>
-                                                            </ul>
                                                         </div>
-                                                    </div>
-                                                <?php endwhile; ?>
+                                                    <?php endwhile; ?>
                                                 </div>
                                             </div>
                                         </div>
@@ -194,166 +203,89 @@ require('includes/connection.php');
                                         <div class="featured-product-section pt-30 pb-55">
                                             <div class="col-md-12">
                                                 <div class="row">
-
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
+                                                    <!-- php receive -->
+                                                    <?php
+                                                    $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND mainordertbl.Status = 3;";
+                                                    $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                    while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
+                                                    ?>
+                                                        <div class="col-md-3">
+                                                            <div class="product-item product-item-2">
+                                                                <div class="product-img box-shadow">
+                                                                    <a href="single-product.html">
+                                                                        <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-info" style="border: 1px solid #666666;">
+                                                                    <h6 class="product-title">
+                                                                        <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
+                                                                    </h6>
+                                                                    <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                    <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'], 2); ?></h3>
+                                                                </div>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="order_receipt.php?mainorderid=<?php echo $row_ship['MainOrderID']; ?>" target="_blank" title="View receipt"><i class="zmdi zmdi-receipt"></i></a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
                                                         </div>
-                                                    </div>
-                                                    <!-- product-item end -->
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!-- product-item end -->
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <!-- product-item end -->
+                                                    <?php endwhile; ?>
                                                 </div>
                                             </div>
-
                                         </div>
-
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="completed">
                                         <div class="featured-product-section pt-30 pb-55">
                                             <div class="col-md-12">
                                                 <div class="row">
-
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
+                                                    <!-- php completed delivered -->
+                                                    <?php
+                                                    $sql_toShip = "SELECT * FROM `mainordertbl` RIGHT JOIN ordertbl ON mainordertbl.MainOrderID = ordertbl.MainOrderID WHERE mainordertbl.UserID = $_SESSION[user_id] AND mainordertbl.Status = 4;";
+                                                    $res_toShip = mysqli_query($conn, $sql_toShip);
+                                                    while ($row_ship = mysqli_fetch_assoc($res_toShip)) :
+                                                    ?>
+                                                        <div class="col-md-3">
+                                                            <div class="product-item product-item-2">
+                                                                <div class="product-img box-shadow">
+                                                                    <a href="single-product.html">
+                                                                        <img src="AdminLTE/images/<?php echo $row_ship['TVImage']; ?>" alt="" style="object-fit: scale-down;height: 181.88px;width: 180px;" />
+                                                                    </a>
+                                                                </div>
+                                                                <div class="product-info" style="border: 1px solid #666666;">
+                                                                    <h6 class="product-title">
+                                                                        <a href="single-product.html"><?php echo $row_ship['TVName']; ?></a>
+                                                                    </h6>
+                                                                    <h6 class="brand-name"><?php echo $row_ship['Brand']; ?></h6>
+                                                                    <h3 class="pro-price">₱<?php echo number_format($row_ship['Price'], 2); ?></h3>
+                                                                </div>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                <ul class="action-button" style="border: 1px solid #666666;">
+                                                                    <li>
+                                                                        <a href="single-product.php?TVID=<?php echo $row_ship['TVID']; ?>" target="_blank" title="View product"><i class="zmdi zmdi-shopping-basket"></i></a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="order_receipt.php?mainorderid=<?php echo $row_ship['MainOrderID']; ?>" target="_blank" title="View receipt"><i class="zmdi zmdi-receipt"></i></a>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
                                                         </div>
-                                                    </div>
-                                                    <!-- product-item end -->
-                                                    <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    <?php endwhile; ?>
                                                     <!-- product-item end -->
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane" id="cancelled">
@@ -362,33 +294,7 @@ require('includes/connection.php');
                                                 <div class="row">
 
                                                     <!-- product-item start -->
-                                                    <div class="col-md-3">
-                                                        <div class="product-item product-item-2">
-                                                            <div class="product-img">
-                                                                <a href="single-product.html">
-                                                                    <img src="img/product-2/1.jpg" alt="" />
-                                                                </a>
-                                                            </div>
-                                                            <div class="product-info">
-                                                                <h6 class="product-title">
-                                                                    <a href="single-product.html">Product Name</a>
-                                                                </h6>
-                                                                <h6 class="brand-name">Sumsung</h6>
-                                                                <h3 class="pro-price">$ 869.00</h3>
-                                                            </div>
-                                                            <ul class="action-button">
-                                                                <li>
-                                                                    <a href="#" data-toggle="modal" data-target="#productModal" title="Quickview"><i class="zmdi zmdi-zoom-in"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html" title="Buy Again"><i class="zmdi zmdi-shopping-basket"></i></a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="#" title="Order Details"><i class="zmdi zmdi-collection-text"></i></a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <!-- product-item end -->
                                                 </div>
                                             </div>

@@ -41,7 +41,7 @@ require('includes/connection.php');
                     <div class="row">
                         <div class="col-xs-12">
                             <div class="breadcrumbs-inner">
-                                <h1 class="breadcrumbs-title">Checkout<?php echo $_SESSION['user_id']; ?></h1>
+                                <h1 class="breadcrumbs-title">Checkout</h1>
                                 <ul class="breadcrumb-list">
                                     <li><a href="index.php">Home</a></li>
                                     <li><a href="cart.php">Cart</a></li>
